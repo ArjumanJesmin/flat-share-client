@@ -1,29 +1,34 @@
 "use client";
 import { usePostFlatMutation } from "@/redux/features/flat";
 import { useState } from "react";
-import { useForm, SubmitHandler } from "react-hook-form";
+import { useForm, SubmitHandler, FieldValues } from "react-hook-form";
 import upload from "@/assets/upload.svg";
 import Image from "next/image";
 import { toast } from "sonner";
+import axios from "axios";
 
 type Inputs = {
   location: string;
   description: string;
   rentAmount: number;
   bedrooms: number;
-  flatPhoto: FileList;
+  flatPhotos: FileList;
   amenities: string;
 };
 
-const img_hosting_token = process.env.IMAGE_UPLOAD_TOKEN;
+const img_hosting_token = "1b855a210951a3b9355ee01e3703dbbc";
 
 const FlatPostForm = () => {
   const [selectedFileName, setSelectedFileName] = useState("");
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0];
-    if (file) {
-      setSelectedFileName(file.name);
+    const files = event.target.files;
+    if (files && files.length > 0) {
+      setSelectedFileName(
+        Array.from(files)
+          .map((file) => file.name)
+          .join(", ")
+      );
     } else {
       setSelectedFileName("");
     }
@@ -38,23 +43,43 @@ const FlatPostForm = () => {
     formState: { errors },
   } = useForm<Inputs>();
 
-  const onSubmit: SubmitHandler<Inputs> = async (formData) => {
+  const uploadImage = async (file: File): Promise<string | null> => {
+    const imageFormData = new FormData();
+    imageFormData.append("image", file);
+
     try {
-      if (!img_hosting_token) {
-        throw new Error("Image hosting token is missing");
-      }
-
-      const imageFormData = new FormData();
-      imageFormData.append("image", formData.flatPhoto[0]);
-
-      const imageResponse = await fetch(image_hosting_url, {
-        method: "POST",
-        body: imageFormData,
+      const { data } = await axios.post(image_hosting_url, imageFormData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
       });
-      const imageResult = await imageResponse.json();
 
-      if (!imageResult.success) {
+      if (data.success) {
+        return data.data.display_url;
+      } else {
         throw new Error("Image upload failed");
+      }
+    } catch (error) {
+      console.error("Error uploading image:", error);
+      return null;
+    }
+  };
+
+  const onSubmit: SubmitHandler<Inputs> = async (formData: FieldValues) => {
+    console.log(formData);
+    try {
+      const uploadedPhotos = await Promise.all(
+        Array.from(formData.flatPhotos as FileList).map((file: File) =>
+          uploadImage(file)
+        )
+      );
+
+      const filteredPhotos = uploadedPhotos.filter(
+        (url): url is string => url !== null
+      );
+
+      if (filteredPhotos.length === 0) {
+        throw new Error("No images were successfully uploaded");
       }
 
       const flatData = {
@@ -62,14 +87,16 @@ const FlatPostForm = () => {
         description: formData.description,
         rentAmount: Number(formData.rentAmount),
         bedrooms: Number(formData.bedrooms),
-        flatPhoto: imageResult.data.url,
+        flatPhotos: filteredPhotos.map((url) => ({ imageUrl: url })),
         amenities: formData.amenities,
       };
+
       console.log(flatData);
 
       const response = await postFlat(flatData).unwrap();
-      toast.success("Flat posted successfully!");
+
       console.log("Flat posted successfully:", response);
+      toast.success("Flat posted successfully!");
     } catch (error) {
       console.error("Failed to post flat:", error);
       toast.error("Failed to post flat.");
@@ -171,8 +198,9 @@ const FlatPostForm = () => {
               <div className="relative w-full border-b border-gray-300 flex items-center">
                 <input
                   type="file"
+                  multiple
                   id="flatPhotos"
-                  {...register("flatPhoto", { required: true })}
+                  {...register("flatPhotos", { required: true })}
                   onChange={handleFileChange}
                   className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
                 />
@@ -184,11 +212,11 @@ const FlatPostForm = () => {
                     height={30}
                   />
                   <span className="ml-2 text-gray-500">
-                    {selectedFileName || "Upload a photo"}
+                    {selectedFileName || "Upload photos"}
                   </span>
                 </div>
               </div>
-              {errors.flatPhoto && (
+              {errors.flatPhotos && (
                 <span className="text-red-500">This field is required</span>
               )}
             </div>
