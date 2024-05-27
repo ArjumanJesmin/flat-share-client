@@ -31,10 +31,10 @@ export const authApi = baseApi.injectEndpoints({
       invalidatesTags: [tagTypes.flat],
     }),
 
-    //get single doctor
-    getSingleId: build.query({
-      query: (id: string | string[] | undefined) => ({
-        url: `/flat getSingleFlat/${id}`,
+    // get single flat
+    getSingleFlat: build.query({
+      query: (id) => ({
+        url: `/flat/getSingleFlat/${id}`,
         method: "GET",
       }),
       providesTags: [tagTypes.flat],
@@ -67,4 +67,5 @@ export const authApi = baseApi.injectEndpoints({
   }),
 });
 
-export const { useGetFlatQuery, usePostFlatMutation } = authApi;
+export const { useGetFlatQuery, usePostFlatMutation, useGetSingleFlatQuery } =
+  authApi;

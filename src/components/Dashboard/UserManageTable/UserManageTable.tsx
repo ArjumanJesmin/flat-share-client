@@ -3,12 +3,8 @@
 import { useGetUserQuery } from "@/redux/features/user";
 import dynamic from "next/dynamic";
 
-// Lazy load the TableRow component
-const TableRow = dynamic(() => import("./TableRow"), { ssr: false });
-
 const UserManageTable: React.FC = () => {
   const { data, isLoading, error } = useGetUserQuery("");
-  console.log(data);
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -21,6 +17,9 @@ const UserManageTable: React.FC = () => {
   if (!data || data.length === 0) {
     return <div>No users found.</div>;
   }
+
+  // Lazy load the TableRow component
+  const TableRow = dynamic(() => import("./TableRow"), { ssr: false });
 
   return (
     <div>

@@ -1,5 +1,3 @@
-import React from "react";
-
 interface SingleData {
   id: string;
   name: string;
@@ -14,14 +12,14 @@ interface TableRowProps {
 }
 
 const TableRow: React.FC<TableRowProps> = ({ data: flats }) => {
-  console.log(flats);
+  // console.log(flats);
   // if (!Array.isArray(data)) {
   //   console.error("Data is not an array:", data);
   //   return null;
   // }
   return (
     <>
-      {flats?.data?.map((singleData: any, index) => (
+      {flats?.data?.map((singleData: any, index: any) => (
         <tr key={singleData.id}>
           <th>{index + 1}</th>
           <td>{singleData.name}</td>
