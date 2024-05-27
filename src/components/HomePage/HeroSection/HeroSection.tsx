@@ -4,7 +4,7 @@ import { useState } from "react";
 import Image from "next/image";
 import { useGetFlatQuery, useGetSingleFlatQuery } from "@/redux/features/flat";
 import dynamic from "next/dynamic";
-import { Flat } from "../FlatModal/FlatModal";
+import { Flat } from "@/components/type/flatTypes";
 
 const HeroSection = () => {
   const { data, isError, isLoading, isSuccess } = useGetFlatQuery("");

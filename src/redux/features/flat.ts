@@ -25,7 +25,7 @@ export const authApi = baseApi.injectEndpoints({
 
     deleteFlat: build.mutation({
       query: (id) => ({
-        url: `/doctor/soft/${id}`,
+        url: `/flat/${id}`,
         method: "DELETE",
       }),
       invalidatesTags: [tagTypes.flat],
@@ -40,26 +40,13 @@ export const authApi = baseApi.injectEndpoints({
       providesTags: [tagTypes.flat],
     }),
 
-    // update a doctor
-    updateFlat: build.mutation({
-      query: (data) => {
-        console.log(data);
-        return {
-          url: `/flat/updateFLat/${data.id}`,
-          method: "PATCH",
-          data: data.body,
-        };
-      },
-      invalidatesTags: [tagTypes.admin, tagTypes.user],
-    }),
-
-    // update a doctor
+    // update a Flat
     updateMyFlat: build.mutation({
       query: (data) => {
         return {
           url: `/flat/updateMyFLat/${data.id}`,
           method: "PATCH",
-          data: data.body,
+          data,
         };
       },
       invalidatesTags: [tagTypes.admin, tagTypes.user],
@@ -67,5 +54,9 @@ export const authApi = baseApi.injectEndpoints({
   }),
 });
 
-export const { useGetFlatQuery, usePostFlatMutation, useGetSingleFlatQuery } =
-  authApi;
+export const {
+  useGetFlatQuery,
+  usePostFlatMutation,
+  useGetSingleFlatQuery,
+  useUpdateMyFlatMutation,
+} = authApi;

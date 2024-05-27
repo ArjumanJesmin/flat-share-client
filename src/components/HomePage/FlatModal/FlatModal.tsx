@@ -4,36 +4,7 @@ import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
-
-interface FlatPhoto {
-  id: string;
-  imageUrl: string;
-  flatId: string;
-}
-
-export interface Flat {
-  data: {
-    location: string;
-    description: string;
-    rentAmount: number;
-    bedrooms: number;
-    amenities: string;
-    flatPhotos: FlatPhoto[];
-  };
-  id: string;
-  location: string;
-  description: string;
-  rentAmount: number;
-  bedrooms: number;
-  amenities: string;
-  flatPhotos: FlatPhoto[];
-}
-
-interface FlatModalProps {
-  isOpen: boolean;
-  onRequestClose: () => void;
-  flat: Flat | null;
-}
+import { FlatModalProps } from "@/components/type/flatTypes";
 
 const FlatModal: React.FC<FlatModalProps> = ({
   isOpen,

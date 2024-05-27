@@ -2,12 +2,13 @@
 
 import { useGetUserQuery } from "@/redux/features/user";
 import dynamic from "next/dynamic";
+import { Flat } from "@/components/type/flatTypes";
 
-const UserManageTable: React.FC = () => {
+const FlatManageTable: React.FC = () => {
   const { data, isLoading, error } = useGetUserQuery("");
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <span className="loading loading-bars loading-md"></span>;
   }
 
   if (error) {
@@ -18,29 +19,32 @@ const UserManageTable: React.FC = () => {
     return <div>No users found.</div>;
   }
 
+  // Assuming the data structure matches the Flat type
+  const flats: Flat[] = data;
+
   // Lazy load the TableRow component
   const TableRow = dynamic(() => import("./TableRow"), { ssr: false });
 
   return (
     <div>
-      <div className="overflow-x-auto">
+      <div className="overflow-x-auto  m-4 shadow p-8">
         <table className="table table-zebra">
           {/* head */}
           <thead>
             <tr>
               <th></th>
-              <th>Name</th>
-              <th>Email</th>
-              <th>Flat</th>
+              <th>Location</th>
+              <th>Description</th>
+              <th>Rent Amount</th>
+              <th>Bedrooms</th>
+              <th>Amenities</th>
               <th>CreatedAt</th>
               <th>UpdatedAt</th>
-              <th>
-                <button>Delete</button>
-              </th>
+              <th>Actions</th>
             </tr>
           </thead>
           <tbody>
-            <TableRow data={data} />
+            <TableRow flats={flats} />
           </tbody>
         </table>
       </div>
@@ -48,4 +52,4 @@ const UserManageTable: React.FC = () => {
   );
 };
 
-export default UserManageTable;
+export default FlatManageTable;
