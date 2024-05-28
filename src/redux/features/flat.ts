@@ -24,8 +24,8 @@ export const authApi = baseApi.injectEndpoints({
     }),
 
     deleteFlat: build.mutation({
-      query: (id) => ({
-        url: `/flat/${id}`,
+      query: (flatId) => ({
+        url: `/flat/deleteFlat/${flatId}`,
         method: "DELETE",
       }),
       invalidatesTags: [tagTypes.flat],
@@ -59,4 +59,5 @@ export const {
   usePostFlatMutation,
   useGetSingleFlatQuery,
   useUpdateMyFlatMutation,
+  useDeleteFlatMutation,
 } = authApi;

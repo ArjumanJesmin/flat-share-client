@@ -67,7 +67,7 @@ const HeroSection = () => {
                   <p>{flat.description}</p>
                   <p>Rent: ${flat.rentAmount}</p>
                   <p>Bedrooms: {flat.bedrooms}</p>
-                  <p>Amenities: {flat.amenities}</p>
+                  <p>Amenities: {flat?.amenities}</p>
                   <div className="card-actions justify-end">
                     <button className="btn bg-cyan-500 text-white w-full">
                       Details

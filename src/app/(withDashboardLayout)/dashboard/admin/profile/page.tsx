@@ -1,7 +1,9 @@
+import MyProfile from "@/components/Dashboard/MyProfile/MyProfile";
+
 const ProfilePage = () => {
   return (
     <div>
-      <h3>This is Profile Page</h3>
+      <MyProfile />
     </div>
   );
 };

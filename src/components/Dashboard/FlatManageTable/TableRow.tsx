@@ -1,14 +1,25 @@
 import React, { useState } from "react";
-import { useUpdateMyFlatMutation } from "@/redux/features/flat";
+import {
+  useDeleteFlatMutation,
+  useUpdateMyFlatMutation,
+} from "@/redux/features/flat";
 import { Flat, TableRowProps } from "@/components/type/flatTypes";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSync } from "@fortawesome/free-solid-svg-icons/faSync";
 import update from "@/assets/pen.svg";
 import Image from "next/image";
+import deleted from "@/assets/trash.svg";
+import { toast } from "sonner";
 
 const TableRow: React.FC<TableRowProps> = ({ flats }) => {
   const [updateFlat, { isLoading, isSuccess, isError }] =
     useUpdateMyFlatMutation();
+  const [
+    deleteFlat,
+    { isLoading: isDeleting, isSuccess: deleteSuccess, isError: deleteError },
+  ] = useDeleteFlatMutation();
+  const [deletedFlats, setDeletedFlats] = useState<string[]>([]);
+
   const [modalOpen, setModalOpen] = useState(false);
   const [selectedFlat, setSelectedFlat] = useState<Flat | null>(null);
   const [formData, setFormData] = useState({
@@ -60,6 +71,15 @@ const TableRow: React.FC<TableRowProps> = ({ flats }) => {
       }
     }
   };
+  const handleDeleteClick = async (flatId: string) => {
+    try {
+      await deleteFlat(flatId).unwrap();
+      setDeletedFlats((prev) => [...prev, flatId]);
+      toast.success("Flat deleted successfully");
+    } catch (error) {
+      console.error(`Failed to delete flat with id ${flatId}:`, error);
+    }
+  };
 
   return (
     <>
@@ -86,6 +106,21 @@ const TableRow: React.FC<TableRowProps> = ({ flats }) => {
               <Image src={update} alt="Update" className="w-6 h-6 mr-2" />
             )}
           </button>
+          <td>
+            <button
+              className={`px-4 py-2 rounded flex items-center ${
+                isDeleting ? "text-red-500" : "text-blue-500"
+              } hover:text-red-300`}
+              onClick={() => handleDeleteClick(singleData?.id)}
+              disabled={isDeleting}
+            >
+              {isDeleting ? (
+                <FontAwesomeIcon icon={faSync} className="animate-spin mr-2" />
+              ) : (
+                <Image src={deleted} alt="Delete" className="w-6 h-6 mr-2" />
+              )}
+            </button>
+          </td>
         </tr>
       ))}
       {isSuccess && (

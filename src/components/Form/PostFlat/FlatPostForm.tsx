@@ -17,25 +17,12 @@ type Inputs = {
 };
 
 const img_hosting_token = "1b855a210951a3b9355ee01e3703dbbc";
+const image_hosting_url = `https://api.imgbb.com/1/upload?key=${img_hosting_token}`;
 
 const FlatPostForm = () => {
-  const [selectedFileName, setSelectedFileName] = useState("");
-
-  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const files = event.target.files;
-    if (files && files.length > 0) {
-      setSelectedFileName(
-        Array.from(files)
-          .map((file) => file.name)
-          .join(", ")
-      );
-    } else {
-      setSelectedFileName("");
-    }
-  };
-
-  const [postFlat, { isLoading, isError, isSuccess }] = usePostFlatMutation();
-  const image_hosting_url = `https://api.imgbb.com/1/upload?key=${img_hosting_token}`;
+  const [postFlat, { isError, isSuccess }] = usePostFlatMutation();
+  const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   const {
     register,
@@ -43,19 +30,38 @@ const FlatPostForm = () => {
     formState: { errors },
   } = useForm<Inputs>();
 
+  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const files = event.target.files;
+    if (files) {
+      setSelectedFiles(Array.from(files));
+    }
+  };
+
+  const uploadImages = async (files: File[]): Promise<string[]> => {
+    setIsLoading(true);
+    const imageUrls: string[] = [];
+    for (const file of files) {
+      const imageUrl = await uploadImage(file);
+      if (imageUrl) {
+        imageUrls.push(imageUrl);
+      }
+    }
+    setIsLoading(false);
+    return imageUrls;
+  };
+
   const uploadImage = async (file: File): Promise<string | null> => {
     const imageFormData = new FormData();
     imageFormData.append("image", file);
 
     try {
-      const { data } = await axios.post(image_hosting_url, imageFormData, {
+      const response = await axios.post(image_hosting_url, imageFormData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
       });
-
-      if (data.success) {
-        return data.data.display_url;
+      if (response.data.success) {
+        return response.data.data.display_url;
       } else {
         throw new Error("Image upload failed");
       }
@@ -68,11 +74,7 @@ const FlatPostForm = () => {
   const onSubmit: SubmitHandler<Inputs> = async (formData: FieldValues) => {
     console.log(formData);
     try {
-      const uploadedPhotos = await Promise.all(
-        Array.from(formData.flatPhotos as FileList).map((file: File) =>
-          uploadImage(file)
-        )
-      );
+      const uploadedPhotos = await uploadImages(selectedFiles);
 
       const filteredPhotos = uploadedPhotos.filter(
         (url): url is string => url !== null
@@ -91,11 +93,7 @@ const FlatPostForm = () => {
         amenities: formData.amenities,
       };
 
-      console.log(flatData);
-
       const response = await postFlat(flatData).unwrap();
-
-      console.log("Flat posted successfully:", response);
       toast.success("Flat posted successfully!");
     } catch (error) {
       console.error("Failed to post flat:", error);
@@ -212,7 +210,11 @@ const FlatPostForm = () => {
                     height={30}
                   />
                   <span className="ml-2 text-gray-500">
-                    {selectedFileName || "Upload photos"}
+                    {selectedFiles.length > 0
+                      ? selectedFiles.map((file, index) => (
+                          <span key={index}>{file.name}</span>
+                        ))
+                      : "Upload photos"}
                   </span>
                 </div>
               </div>
