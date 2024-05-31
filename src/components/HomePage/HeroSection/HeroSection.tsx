@@ -7,7 +7,8 @@ import dynamic from "next/dynamic";
 import { Flat } from "@/components/type/flatTypes";
 
 const HeroSection = () => {
-  const { data, isError, isLoading, isSuccess } = useGetFlatQuery("");
+  const { data, isError, isLoading, isSuccess } = useGetFlatQuery({});
+  console.log(data, "=======================");
   const [selectedFlatId, setSelectedFlatId] = useState(null);
 
   const {

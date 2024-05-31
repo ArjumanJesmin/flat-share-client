@@ -83,7 +83,7 @@ const TableRow: React.FC<TableRowProps> = ({ flats }) => {
 
   return (
     <>
-      {flats?.data?.map((singleData: Flat, index: number) => (
+      {flats?.data?.map((singleData: any, index: any) => (
         <tr key={singleData.id}>
           <th>{index + 1}</th>
           <td>{singleData.location}</td>

@@ -14,11 +14,22 @@ const AuthButton = () => {
   return (
     <>
       {userInfo?.email ? (
-        <button onClick={handleLogOut} className="btn bg-red-500 text-white">
-          <Link className="font-bold text-center" href="/logout">
-            Logout
-          </Link>
-        </button>
+        <div className="gap-4 flex justify-center">
+          <button>
+            <Link
+              className="cursor-pointer border-r font-bold mr-3"
+              href="/myProfile"
+            >
+              My Profile
+            </Link>
+          </button>
+
+          <button onClick={handleLogOut} className="btn bg-red-500 text-white">
+            <Link className="font-bold text-center" href="/logout">
+              Logout
+            </Link>
+          </button>
+        </div>
       ) : (
         <button className="btn bg-cyan-500 text-white">
           <Link className="font-bold text-center" href="/login">

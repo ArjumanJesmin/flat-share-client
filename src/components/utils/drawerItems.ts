@@ -13,16 +13,10 @@ export const drawerItems = (role: UserRole): TDrawerItem[] => {
 
   switch (role) {
     case USER_ROLE.SUPER_ADMIN:
-      roleMenus.push(
-        {
-          title: "Dashboard",
-          path: `${role}`,
-        },
-        {
-          title: "Manage-users",
-          path: `${role}/manage-users`,
-        }
-      );
+      roleMenus.push({
+        title: "Dashboard",
+        path: `${role}`,
+      });
       break;
     case USER_ROLE.ADMIN:
       roleMenus.push(
@@ -37,10 +31,6 @@ export const drawerItems = (role: UserRole): TDrawerItem[] => {
         {
           title: "Flat-Management",
           path: `${role}/flatManagement`,
-        },
-        {
-          title: "Flat Post",
-          path: `${role}/flatPost`,
         }
       );
       break;
@@ -53,10 +43,6 @@ export const drawerItems = (role: UserRole): TDrawerItem[] => {
         {
           title: "Users-details",
           path: `${role}/user-details`,
-        },
-        {
-          title: "Flat Post",
-          path: `${role}/flatPost`,
         }
       );
       break;

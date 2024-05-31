@@ -5,7 +5,7 @@ export interface FlatPhoto {
 }
 
 export interface Flat {
-  data: Flat;
+  // data: Flat;
   id: string;
   location: string;
   description: string;

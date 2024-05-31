@@ -1,11 +1,11 @@
 "use client";
 
-import { useGetUserQuery } from "@/redux/features/user";
 import dynamic from "next/dynamic";
 import { Flat } from "@/components/type/flatTypes";
+import { useGetUserMeQuery } from "@/redux/features/user";
 
 const FlatManageTable: React.FC = () => {
-  const { data, isLoading, error } = useGetUserQuery("");
+  const { data, isLoading, error } = useGetUserMeQuery("");
 
   if (isLoading) {
     return <span className="loading loading-bars loading-md"></span>;
@@ -44,7 +44,8 @@ const FlatManageTable: React.FC = () => {
             </tr>
           </thead>
           <tbody>
-            <TableRow flats={flats} />
+            {" "}
+            <TableRow flats={flats} />{" "}
           </tbody>
         </table>
       </div>

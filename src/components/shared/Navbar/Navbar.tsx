@@ -13,7 +13,7 @@ const Navbar = () => {
   );
 
   return (
-    <div className="navbar bg-[#CAF4FF] ">
+    <div className="navbar bg-gradient-to-r from-[#b4ae92] to-custom-light ">
       <div className="navbar-start">
         {/* Dropdown for mobile view */}
         <div className="dropdown">

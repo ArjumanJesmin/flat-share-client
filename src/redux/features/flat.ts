@@ -1,13 +1,22 @@
+import { Flat } from "@/components/type/flatTypes";
 import { baseApi } from "../api/baseApi";
 import { tagTypes } from "../api/tagTypes";
+import { IMeta } from "@/types/common";
 
 export const authApi = baseApi.injectEndpoints({
   endpoints: (build) => ({
     getFlat: build.query({
-      query: () => ({
+      query: (arg: Record<string, any>) => ({
         url: `/flat`,
         method: "GET",
+        params: arg,
       }),
+      transformResponse: (response: Flat[], meta: IMeta) => {
+        return {
+          flats: response,
+          meta,
+        };
+      },
       providesTags: [tagTypes.flat],
     }),
 

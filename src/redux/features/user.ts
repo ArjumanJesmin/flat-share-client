@@ -3,56 +3,48 @@ import { tagTypes } from "../api/tagTypes";
 
 export const userApi = baseApi.injectEndpoints({
   endpoints: (build) => ({
-    getUser: build.query({
+    getUserMe: build.query({
       query: () => ({
-        url: `/flat`,
+        url: `/user/me`,
+        method: "GET",
+      }),
+      providesTags: [tagTypes.user],
+    }),
+    getAllUsers: build.query({
+      query: () => ({
+        url: `/user/users`,
         method: "GET",
       }),
       providesTags: [tagTypes.user],
     }),
 
-    // deleteFlat: build.mutation({
-    //   query: (id) => ({
-    //     url: `/doctor/soft/${id}`,
-    //     method: "DELETE",
-    //   }),
-    //   invalidatesTags: [tagTypes.flat],
-    // }),
+    changePassword: build.mutation({
+      query: (data) => {
+        return {
+          url: `/auth/change-password`,
+          method: "POST",
+          data,
+        };
+      },
+      invalidatesTags: [tagTypes.user, tagTypes.admin],
+    }),
 
-    // //get single doctor
-    // getSingleId: build.query({
-    //   query: (id: string | string[] | undefined) => ({
-    //     url: `/flat getSingleFlat/${id}`,
-    //     method: "GET",
-    //   }),
-    //   providesTags: [tagTypes.flat],
-    // }),
-
-    // // update a doctor
-    // updateFlat: build.mutation({
-    //   query: (data) => {
-    //     console.log(data);
-    //     return {
-    //       url: `/flat/updateFLat/${data.id}`,
-    //       method: "PATCH",
-    //       data: data.body,
-    //     };
-    //   },
-    //   invalidatesTags: [tagTypes.admin, tagTypes.user],
-    // }),
-
-    // // update a doctor
-    // updateMyFlat: build.mutation({
-    //   query: (data) => {
-    //     return {
-    //       url: `/flat/updateMyFLat/${data.id}`,
-    //       method: "PATCH",
-    //       data: data.body,
-    //     };
-    //   },
-    //   invalidatesTags: [tagTypes.admin, tagTypes.user],
-    // }),
+    editRole: build.mutation({
+      query: ({ userId, role }) => {
+        return {
+          url: `/user/${userId}/role`,
+          method: "POST",
+          role,
+        };
+      },
+      invalidatesTags: [tagTypes.user, tagTypes.admin],
+    }),
   }),
 });
 
-export const { useGetUserQuery } = userApi;
+export const {
+  useGetUserMeQuery,
+  useGetAllUsersQuery,
+  useChangePasswordMutation,
+  useEditRoleMutation,
+} = userApi;

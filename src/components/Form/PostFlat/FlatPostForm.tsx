@@ -102,7 +102,7 @@ const FlatPostForm = () => {
   };
 
   return (
-    <div className="mx-2 mt-0 border p-12 rounded shadow">
+    <div className="mx-auto my-16 border p-12 rounded w-2/3  shadow">
       <div className="flex items-center my-4 justify-between w-full">
         <h2 className="text-center text-2xl font-medium my-4 text-cyan-500">
           Create Flat

@@ -2,7 +2,7 @@ import Link from "next/link";
 
 const FooterGrid = () => {
   return (
-    <div className="grid grid-cols-5 gap-4 bg-[#454028] text-white p-4">
+    <div className="grid grid-cols-5 gap-4 bg-gradient-to-r from-[#454028] to-custom-light text-white p-4">
       <div>
         <Link className="cursor-pointer hover:underline" href="/">
           Home

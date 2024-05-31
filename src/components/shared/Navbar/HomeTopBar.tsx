@@ -11,27 +11,5 @@ export const HomeTopBar = () => (
         About Us
       </Link>
     </li>
-
-    <li>
-      <Link
-        className="cursor-pointer border-r font-bold mr-3"
-        href="/ourProjects"
-      >
-        Our Projects
-      </Link>
-    </li>
-    <li>
-      <Link className="cursor-pointer border-r font-bold mr-3" href="/donation">
-        Donation / Get Involved
-      </Link>
-    </li>
-    <li>
-      <Link
-        className="cursor-pointer border-r font-bold mr-3"
-        href="/contactUs"
-      >
-        Contact Us
-      </Link>
-    </li>
   </>
 );
