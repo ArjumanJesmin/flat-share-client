@@ -3,7 +3,7 @@ import {
   useDeleteFlatMutation,
   useUpdateMyFlatMutation,
 } from "@/redux/features/flat";
-import { Flat, TableRowProps } from "@/components/type/flatTypes";
+import { Flat, TFlat, TableRowProps } from "@/components/type/flatTypes";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSync } from "@fortawesome/free-solid-svg-icons/faSync";
 import update from "@/assets/pen.svg";
@@ -11,13 +11,14 @@ import Image from "next/image";
 import deleted from "@/assets/trash.svg";
 import { toast } from "sonner";
 
-const TableRow: React.FC<TableRowProps> = ({ flats }) => {
+const TableRow = ({ flats }: any) => {
   const [updateFlat, { isLoading, isSuccess, isError }] =
     useUpdateMyFlatMutation();
   const [
     deleteFlat,
     { isLoading: isDeleting, isSuccess: deleteSuccess, isError: deleteError },
   ] = useDeleteFlatMutation();
+  console.log(flats);
   const [deletedFlats, setDeletedFlats] = useState<string[]>([]);
 
   const [modalOpen, setModalOpen] = useState(false);
@@ -83,7 +84,7 @@ const TableRow: React.FC<TableRowProps> = ({ flats }) => {
 
   return (
     <>
-      {flats?.data?.map((singleData: any, index: any) => (
+      {flats?.data?.map((singleData: any, index: number) => (
         <tr key={singleData.id}>
           <th>{index + 1}</th>
           <td>{singleData.location}</td>

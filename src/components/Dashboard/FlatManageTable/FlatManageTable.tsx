@@ -1,11 +1,10 @@
 "use client";
 
+import { useGetFlatQuery } from "@/redux/features/flat";
 import dynamic from "next/dynamic";
-import { Flat } from "@/components/type/flatTypes";
-import { useGetUserMeQuery } from "@/redux/features/user";
 
 const FlatManageTable: React.FC = () => {
-  const { data, isLoading, error } = useGetUserMeQuery("");
+  const { data: flats, isLoading, error } = useGetFlatQuery({});
 
   if (isLoading) {
     return <span className="loading loading-bars loading-md"></span>;
@@ -14,13 +13,6 @@ const FlatManageTable: React.FC = () => {
   if (error) {
     return <div>Error loading data</div>;
   }
-
-  if (!data || data.length === 0) {
-    return <div>No users found.</div>;
-  }
-
-  // Assuming the data structure matches the Flat type
-  const flats: Flat[] = data;
 
   // Lazy load the TableRow component
   const TableRow = dynamic(() => import("./TableRow"), { ssr: false });
@@ -44,8 +36,7 @@ const FlatManageTable: React.FC = () => {
             </tr>
           </thead>
           <tbody>
-            {" "}
-            <TableRow flats={flats} />{" "}
+            <TableRow flats={flats} />
           </tbody>
         </table>
       </div>

@@ -16,13 +16,14 @@ const UserManageTable = () => {
 
   return (
     <div>
-      <div className="overflow-x-auto  m-4">
+      <div className="overflow-x-auto m-4">
         <table className="table">
           <thead>
             <tr>
               <th></th>
               <th>Email</th>
               <th>Role</th>
+              <th>Status</th>
               <th>CreateAt</th>
               <th>UpdateAt</th>
             </tr>

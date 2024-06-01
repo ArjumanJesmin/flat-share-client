@@ -33,20 +33,20 @@ const RegisterForm = () => {
       try {
         const res = await registerUser({ ...userData, password });
 
-        // if (res?.data?.id) {
-        //   toast.success("Register Successfully");
-        //   const result = await loginUser({
-        //     password: data.password,
-        //     email: data.email,
-        //   });
+        if (res?.data?.id) {
+          toast.success("Register Successfully");
+          const result = await loginUser({
+            password: data.password,
+            email: data.email,
+          });
 
-        //   if (result?.data?.accessToken) {
-        //     storeUserInfo({ accessToken: result?.data?.accessToken }),
-        //       {
-        //         redirect: "/dashboard",
-        //       };
-        //   }
-        // }
+          if (result?.data?.accessToken) {
+            storeUserInfo({ accessToken: result?.data?.accessToken }),
+              {
+                redirect: "/dashboard",
+              };
+          }
+        }
       } catch (error: any) {
         console.log(error);
         toast.error(error.message);

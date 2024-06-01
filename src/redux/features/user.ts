@@ -33,7 +33,18 @@ export const userApi = baseApi.injectEndpoints({
       query: ({ userId, role }) => {
         return {
           url: `/user/${userId}/role`,
-          method: "POST",
+          method: "PATCH",
+          role,
+        };
+      },
+      invalidatesTags: [tagTypes.user, tagTypes.admin],
+    }),
+
+    changeStatus: build.mutation({
+      query: ({ userId, role }) => {
+        return {
+          url: `/user/${userId}/status`,
+          method: "PATCH",
           role,
         };
       },
@@ -47,4 +58,5 @@ export const {
   useGetAllUsersQuery,
   useChangePasswordMutation,
   useEditRoleMutation,
+  useChangeStatusMutation,
 } = userApi;

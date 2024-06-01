@@ -5,3 +5,11 @@ export const USER_ROLE = {
 };
 
 export type UserRole = keyof typeof USER_ROLE;
+
+export const UserStatus = {
+  ACTIVE: "ACTIVE",
+  BLOCKED: "BLOCKED",
+  DELETED: "DELETED",
+};
+
+export type UserStatusType = keyof typeof UserStatus;

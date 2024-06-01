@@ -21,7 +21,7 @@ export default function RootLayout({
       <html lang="en">
         <body className={inter.className}>
           <Toaster position="top-center" />
-          <div className="min-h-screen">{children}</div>
+          <div className="min-h-screen container">{children}</div>
         </body>
       </html>
     </Providers>
