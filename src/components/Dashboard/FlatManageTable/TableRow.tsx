@@ -3,7 +3,7 @@ import {
   useDeleteFlatMutation,
   useUpdateMyFlatMutation,
 } from "@/redux/features/flat";
-import { Flat, TFlat, TableRowProps } from "@/components/type/flatTypes";
+import { Flat } from "@/components/type/flatTypes";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSync } from "@fortawesome/free-solid-svg-icons/faSync";
 import update from "@/assets/pen.svg";
@@ -18,7 +18,7 @@ const TableRow = ({ flats }: any) => {
     deleteFlat,
     { isLoading: isDeleting, isSuccess: deleteSuccess, isError: deleteError },
   ] = useDeleteFlatMutation();
-  console.log(flats);
+
   const [deletedFlats, setDeletedFlats] = useState<string[]>([]);
 
   const [modalOpen, setModalOpen] = useState(false);
@@ -31,7 +31,7 @@ const TableRow = ({ flats }: any) => {
     amenities: "",
   });
 
-  const handleUpdateClick = (flat: Flat) => {
+  const handleUpdateClick = (flat: any) => {
     setSelectedFlat(flat);
     setFormData({
       location: flat.location,
@@ -104,7 +104,11 @@ const TableRow = ({ flats }: any) => {
             {isLoading ? (
               <FontAwesomeIcon icon={faSync} className="animate-spin mr-2" />
             ) : (
-              <Image src={update} alt="Update" className="w-6 h-6 mr-2" />
+              <Image
+                src={update}
+                alt="Update"
+                className="w-5 h-5 mt-6 mr-2 items-center"
+              />
             )}
           </button>
           <td>
@@ -118,7 +122,11 @@ const TableRow = ({ flats }: any) => {
               {isDeleting ? (
                 <FontAwesomeIcon icon={faSync} className="animate-spin mr-2" />
               ) : (
-                <Image src={deleted} alt="Delete" className="w-6 h-6 mr-2" />
+                <Image
+                  src={deleted}
+                  alt="Delete"
+                  className="w-12 h-12 mr-2 items-center"
+                />
               )}
             </button>
           </td>

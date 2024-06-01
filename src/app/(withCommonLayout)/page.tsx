@@ -1,5 +1,5 @@
 import CoverSection from "@/components/HomePage/CoverSection/CoverSection";
-// import HeroSection from "@/components/HomePage/HeroSection/HeroSection";
+import HeroSection from "@/components/HomePage/HeroSection/HeroSection";
 import SearchArea from "@/components/HomePage/SearchArea/SearchArea";
 import Testimonials from "@/components/HomePage/Testimonials/Testimonials";
 import Tips from "@/components/HomePage/Testimonials/Tips";
@@ -13,7 +13,7 @@ const HomePage = () => {
       <Navbar />
       <CoverSection />
       <SearchArea />
-      {/* <HeroSection /> */}
+      <HeroSection />
       <GalleryPage />
       <Testimonials />
       <Tips />

@@ -5,19 +5,33 @@ import { IMeta } from "@/types/common";
 
 export const authApi = baseApi.injectEndpoints({
   endpoints: (build) => ({
-    getFlat: build.query({
-      query: (arg: Record<string, any>) => ({
+    // getFlat: build.query({
+    //   query: (arg: Record<string, any>) => ({
+    //     url: `/flat`,
+    //     method: "GET",
+    //     params: arg,
+    //   }),
+    //   transformResponse: (response: Flat[], meta: IMeta) => {
+    //     return {
+    //       flats: response,
+    //       meta,
+    //     };
+    //   },
+    //   providesTags: [tagTypes.flat],
+    // }),
+
+    getFlat: build.query<{ flats: Flat[]; meta: IMeta }, Record<string, any>>({
+      query: (arg) => ({
         url: `/flat`,
         method: "GET",
         params: arg,
       }),
-      transformResponse: (response: Flat[], meta: IMeta) => {
-        return {
-          flats: response,
-          meta,
-        };
-      },
-      providesTags: [tagTypes.flat],
+      // transformResponse: (response: Flat[], meta: IMeta) => {
+      //   return {
+      //     flats: response,
+      //     meta,
+      //   };
+      // },
     }),
 
     postFlat: build.mutation({
@@ -53,7 +67,7 @@ export const authApi = baseApi.injectEndpoints({
     updateMyFlat: build.mutation({
       query: (data) => {
         return {
-          url: `/flat/updateMyFLat/${data.id}`,
+          url: `/flat/updateFLat/${data.id}`,
           method: "PATCH",
           data,
         };
