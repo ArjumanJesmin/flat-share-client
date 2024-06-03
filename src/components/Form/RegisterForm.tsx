@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-
 import { useForm, SubmitHandler } from "react-hook-form";
 import { toast } from "sonner";
 import { loginUser } from "../service/actions/userLogin";
@@ -34,17 +33,18 @@ const RegisterForm = () => {
         const res = await registerUser({ ...userData, password });
 
         if (res?.data?.id) {
-          toast.success("Register Successfully");
+          toast.success(res?.message);
           const result = await loginUser({
             password: data.password,
             email: data.email,
           });
 
           if (result?.data?.accessToken) {
-            storeUserInfo({ accessToken: result?.data?.accessToken }),
-              {
-                redirect: "/dashboard",
-              };
+            storeUserInfo({ accessToken: result?.data?.accessToken });
+            // router.push("/dashboard");
+            // {
+            //   redirect: "/dashboard",
+            // };
           }
         }
       } catch (error: any) {
@@ -54,7 +54,6 @@ const RegisterForm = () => {
     } else {
       setError(true);
     }
-
     console.log(data);
   };
   const password = watch("password");

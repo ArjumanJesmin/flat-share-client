@@ -2,13 +2,15 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import { useGetFlatQuery, useGetSingleFlatQuery } from "@/redux/features/flat";
+import {
+  useGetFlatDataQuery,
+  useGetSingleFlatQuery,
+} from "@/redux/features/flat";
 import dynamic from "next/dynamic";
 import { Flat } from "@/components/type/flatTypes";
 
 const HeroSection = () => {
-  const { data, isError, isLoading, isSuccess } = useGetFlatQuery({});
-  console.log(data, "=======================");
+  const { data, isError, isLoading, isSuccess } = useGetFlatDataQuery({});
   const [selectedFlatId, setSelectedFlatId] = useState(null);
 
   const {
@@ -46,9 +48,9 @@ const HeroSection = () => {
     <>
       <div className="grid grid-cols-3 m-8 gap-4">
         {isSuccess &&
-          data?.data?.map((flat: Flat) => {
+          data?.data?.slice(0, 3).map((flat: Flat) => {
             const firstPhoto =
-              flat?.flatPhotos?.length > 0 ? flat?.flatPhotos[0]?.imageUrl : "";
+              flat?.flatPhotos?.length > 0 ? flat?.flatPhotos[1]?.imageUrl : "";
 
             return (
               <div

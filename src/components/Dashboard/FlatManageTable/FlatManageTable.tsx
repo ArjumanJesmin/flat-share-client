@@ -1,10 +1,10 @@
 "use client";
 
-import { useGetFlatQuery } from "@/redux/features/flat";
+import { useGetFlatDataQuery } from "@/redux/features/flat";
 import dynamic from "next/dynamic";
 
 const FlatManageTable: React.FC = () => {
-  const { data: flats, isLoading, error } = useGetFlatQuery({});
+  const { data: flats, isLoading, error } = useGetFlatDataQuery({});
 
   if (isLoading) {
     return <span className="loading loading-bars loading-md"></span>;

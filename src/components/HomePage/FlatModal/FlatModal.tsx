@@ -5,16 +5,51 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import { FlatModalProps } from "@/components/type/flatTypes";
+import { getUserInfo } from "@/components/service/actions/auth.service";
+import { useState } from "react";
+import { useFlatSharePostMutation } from "@/redux/features/flatShare";
+import { toast } from "sonner";
 
 const FlatModal: React.FC<FlatModalProps> = ({
   isOpen,
   onRequestClose,
   flat,
 }) => {
+  const userInfo = getUserInfo();
+  const [additionalInfo, setAdditionalInfo] = useState("");
+  const [termsAccepted, setTermsAccepted] = useState(false);
+  const [flatSharePost] = useFlatSharePostMutation();
+
   if (!flat) return null;
 
   const { location, description, rentAmount, bedrooms, amenities, flatPhotos } =
     flat?.data;
+
+  // Handle form submission
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    if (!termsAccepted) {
+      alert("You must agree to the terms and conditions.");
+      return;
+    }
+
+    const requestData = {
+      contactInfo: userInfo?.email,
+      additionalInfo,
+      flatId: flat.data.id,
+      termsAccepted,
+    };
+
+    try {
+      await flatSharePost(requestData);
+      toast.success("Flat share request submitted successfully!");
+      onRequestClose();
+    } catch (error) {
+      console.error("Error submitting flat share request:", error);
+      toast.error("Error submitting flat share request!");
+    }
+  };
 
   return (
     <Modal
@@ -55,12 +90,60 @@ const FlatModal: React.FC<FlatModalProps> = ({
             className="carousel-image"
           />
         )}
-        <h2>{location}</h2>
-        <p>{description}</p>
+        <h2>Location: {location}</h2>
+        <p>Description: {description}</p>
         <p>Rent: ${rentAmount}</p>
         <p>Bedrooms: {bedrooms}</p>
         <p>Amenities: {amenities}</p>
       </div>
+
+      {/* handle Submit form*/}
+      <form
+        onSubmit={handleSubmit}
+        className="mt-4 w-1/2 mx-auto border shadow-lg bg-slate-50 p-4 rounded-lg"
+      >
+        <div className="mb-4">
+          <label className="block text-gray-700 text-center font-semibold py-3">
+            Your Contact Information
+          </label>
+          <input
+            type="text"
+            value={userInfo?.email}
+            className="w-full px-3 py-2 border rounded bg-gray-200"
+          />
+        </div>
+        <div className="mb-4">
+          <label className="block text-gray-700">Additional Information</label>
+          <input
+            value={additionalInfo}
+            onChange={(e) => setAdditionalInfo(e.target.value)}
+            className="w-full px-3 py-2 border rounded"
+            required
+          />
+        </div>
+        <div className="mb-4">
+          <label className="block text-gray-700">
+            <input
+              type="checkbox"
+              checked={termsAccepted}
+              onChange={(e) => setTermsAccepted(e.target.checked)}
+              className="mr-2"
+            />
+            I agree to the terms and conditions
+          </label>
+        </div>
+        <div className="mx-auto text-center my-2">
+          <button
+            type="submit"
+            disabled={!termsAccepted}
+            className="btn bg-blue-500 text-white"
+          >
+            Submit Flat Share Request
+          </button>
+        </div>
+      </form>
+
+      {/* Additional styles */}
       <style jsx>{`
         .carousel-image-container {
           display: flex;

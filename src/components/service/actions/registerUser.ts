@@ -28,20 +28,20 @@ export const registerUser = async ({
   );
   const userInfo = await res.json();
 
-  if (userInfo?.data?.id) {
-    toast.success("Register Successfully");
-    const result = await loginUser({
-      password,
-      email,
-    });
+  // if (userInfo?.data?.id) {
+  //   toast.success("Register Successfully");
+  //   const result = await loginUser({
+  //     password,
+  //     email,
+  //   });
 
-    if (result?.data?.accessToken) {
-      storeUserInfo({ accessToken: result?.data?.accessToken }),
-        {
-          redirect: "/dashboard",
-        };
-    }
-  }
+  //   if (result?.data?.accessToken) {
+  //     storeUserInfo({ accessToken: result?.data?.accessToken }),
+  //       {
+  //         redirect: "/dashboard",
+  //       };
+  //   }
+  // }
 
   return userInfo;
 };

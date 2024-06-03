@@ -17,7 +17,6 @@ export const authApi = baseApi.injectEndpoints({
           url: `/flatShare/create`,
           method: "POST",
           data,
-          // contentType: "application/json",
         };
       },
       invalidatesTags: [tagTypes.flat],
