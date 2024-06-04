@@ -7,6 +7,7 @@ import { drawerItems } from "@/components/utils/drawerItems";
 import { useEffect, useState } from "react";
 import { getUserInfo } from "@/components/service/actions/auth.service";
 import { UserRole } from "@/components/contants/role";
+import Link from "next/link";
 
 const DashboardDrawer = ({ children }: { children: React.ReactNode }) => {
   const [userRole, setUserRole] = useState("");
@@ -55,6 +56,11 @@ const DashboardDrawer = ({ children }: { children: React.ReactNode }) => {
               <Sidebar key={index} item={item} />
             ))}
           </div>
+          <li>
+            <Link className="text-[#002379]" href="/">
+              Home Page
+            </Link>
+          </li>
         </ul>
       </div>
     </div>

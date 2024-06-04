@@ -8,6 +8,7 @@ import {
 } from "@/redux/features/flat";
 import dynamic from "next/dynamic";
 import { Flat } from "@/components/type/flatTypes";
+import Link from "next/link";
 
 const HeroSection = () => {
   const { data, isError, isLoading, isSuccess } = useGetFlatDataQuery({});
@@ -36,7 +37,14 @@ const HeroSection = () => {
   }
 
   if (isError) {
-    return <div>Error loading data.</div>;
+    return (
+      <div>
+        First
+        <Link className="font-bold text-center" href="/login">
+          Login
+        </Link>
+      </div>
+    );
   }
 
   // Lazy load the TableRow component
@@ -49,9 +57,6 @@ const HeroSection = () => {
       <div className="grid grid-cols-3 m-8 gap-4">
         {isSuccess &&
           data?.data?.slice(0, 3).map((flat: Flat) => {
-            const firstPhoto =
-              flat?.flatPhotos?.length > 0 ? flat?.flatPhotos[1]?.imageUrl : "";
-
             return (
               <div
                 key={flat.id}
@@ -59,10 +64,10 @@ const HeroSection = () => {
                 onClick={() => handleOpenModal(flat.id)}
               >
                 <Image
-                  src={firstPhoto}
+                  src={flat?.flatPhotos[0]?.imageUrl}
                   alt="Flat Image"
-                  width={300}
-                  height={200}
+                  width={500}
+                  height={300}
                   className="object-cover"
                 />
                 <div className="card-body">

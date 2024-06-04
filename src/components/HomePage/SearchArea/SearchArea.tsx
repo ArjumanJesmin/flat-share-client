@@ -14,15 +14,11 @@ const SearchArea: React.FC = () => {
     limit: 4,
   });
 
-  const { data, isLoading, isError } = useGetFlatQuery(searchCriteria);
+  const { data, isError } = useGetFlatQuery(searchCriteria);
 
   const handleSearch = (criteria: Record<string, any>) => {
     setSearchCriteria({ ...searchCriteria, ...criteria });
   };
-
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
 
   if (isError) {
     return <div>Error loading flats</div>;

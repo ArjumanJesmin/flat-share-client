@@ -1,7 +1,6 @@
 import { getUserInfo } from "@/components/service/actions/auth.service";
 import { logoutUser } from "@/components/service/actions/logoutUser";
 import { useRouter } from "next/navigation";
-
 import Link from "next/link";
 
 const AuthButton = () => {
@@ -11,31 +10,32 @@ const AuthButton = () => {
   const handleLogOut = () => {
     logoutUser(router);
   };
+
   return (
     <>
       {userInfo?.email ? (
-        <div className="gap-4 flex justify-center">
-          <button>
-            <Link
-              className="cursor-pointer border-r font-bold mr-3"
-              href="/myProfile"
-            >
-              My Profile
+        <>
+          <li>
+            <Link className="cursor-pointer font-bold" href="/dashboard">
+              Profile
             </Link>
-          </button>
-
-          <button onClick={handleLogOut} className="btn bg-red-500 text-white">
-            <Link className="font-bold text-center" href="/logout">
-              Logout
-            </Link>
-          </button>
-        </div>
+          </li>
+          <li onClick={handleLogOut} className="cursor-pointer font-bold">
+            Logout
+          </li>
+        </>
       ) : (
-        <button className="btn bg-cyan-500 text-white">
-          <Link className="font-bold text-center" href="/login">
+        <li>
+          <Link className="cursor-pointer text-center font-bold" href="/login">
             Login
           </Link>
-        </button>
+          <Link
+            className="cursor-pointer text-center font-bold"
+            href="/register"
+          >
+            Register
+          </Link>
+        </li>
       )}
     </>
   );

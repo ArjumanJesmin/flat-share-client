@@ -1,7 +1,7 @@
 "use client";
 
 import { loginUser } from "@/components/service/actions/userLogin";
-import { useForm, SubmitHandler, FieldValues } from "react-hook-form";
+import { useForm, SubmitHandler } from "react-hook-form";
 import { toast } from "sonner";
 import { storeUserInfo } from "../service/actions/auth.service";
 import { useState } from "react";

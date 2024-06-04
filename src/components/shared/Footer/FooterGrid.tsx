@@ -62,7 +62,7 @@ const FooterGrid = () => {
             +1 234 567 890
           </a>
         </p>
-        <div className="flex mt-3 gap-6">
+        <div className="flex mt-3 gap-6 text-white">
           <a
             className="hover:underline"
             href="https://www.facebook.com/yourprofile"

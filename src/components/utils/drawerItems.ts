@@ -4,12 +4,12 @@ import { USER_ROLE, UserRole } from "../contants/role";
 export const drawerItems = (role: UserRole): TDrawerItem[] => {
   const roleMenus: TDrawerItem[] = [];
 
-  const defaultMenus = [
-    {
-      title: "Profile",
-      path: `${role}/profile`,
-    },
-  ];
+  // const defaultMenus = [
+  //   {
+  //     title: "Profile",
+  //     path: `${role}/profile`,
+  //   },
+  // ];
 
   switch (role) {
     case USER_ROLE.SUPER_ADMIN:
@@ -31,6 +31,10 @@ export const drawerItems = (role: UserRole): TDrawerItem[] => {
         {
           title: "Flat-Management",
           path: `${role}/flatManagement`,
+        },
+        {
+          title: "Profile",
+          path: `${role}/profile`,
         }
       );
       break;
@@ -41,11 +45,19 @@ export const drawerItems = (role: UserRole): TDrawerItem[] => {
           path: `${role}`,
         },
         {
-          title: "Users-details",
-          path: `${role}/user-details`,
+          title: "MyFlatPost",
+          path: `${role}/flatPost`,
+        },
+        {
+          title: "FlatRequest",
+          path: `${role}/flatRequest`,
+        },
+        {
+          title: "Password",
+          path: `${role}/password`,
         }
       );
       break;
   }
-  return [...roleMenus, ...defaultMenus];
+  return [...roleMenus];
 };

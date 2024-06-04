@@ -2,7 +2,7 @@ import { Flat } from "@/components/type/flatTypes";
 import Image from "next/image";
 
 interface FlatListProps {
-  flats: Flat[];
+  flats: any;
   total: number;
   page: number;
   limit: number;
@@ -41,8 +41,10 @@ const FlatList: React.FC<FlatListProps> = ({
               </div>
               <div className="mt-4 md:mt-0 md:ml-6">
                 <Image
-                  src={flat.photo}
+                  src={flat?.flatPhotos[0]?.imageUrl}
                   alt={`Photo of ${flat.location}`}
+                  width={300}
+                  height={200}
                   className="w-full md:w-48 h-32 object-cover rounded-lg"
                 />
               </div>
