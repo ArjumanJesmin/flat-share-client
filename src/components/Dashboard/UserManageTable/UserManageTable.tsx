@@ -4,7 +4,7 @@ import { useGetAllUsersQuery } from "@/redux/features/user";
 import UserManageRow from "./UserManageRow";
 
 const UserManageTable = () => {
-  const { data: users, isLoading, isError } = useGetAllUsersQuery("");
+  const { data: users, isLoading, refetch, isError } = useGetAllUsersQuery("");
 
   if (isLoading) {
     return <p>Loading...</p>;
@@ -28,7 +28,7 @@ const UserManageTable = () => {
               <th>UpdateAt</th>
             </tr>
           </thead>
-          <tbody>{<UserManageRow users={users} />}</tbody>
+          <tbody>{<UserManageRow users={users} refetch={refetch} />}</tbody>
         </table>
       </div>
     </div>

@@ -30,24 +30,19 @@ export const userApi = baseApi.injectEndpoints({
     }),
 
     editRole: build.mutation({
-      query: ({ userId, role }) => {
-        return {
-          url: `/user/${userId}/role`,
-          method: "PATCH",
-          role,
-        };
-      },
+      query: ({ userId, role }) => ({
+        url: `/user/${userId}/role`,
+        method: "PATCH",
+        role,
+      }),
       invalidatesTags: [tagTypes.user, tagTypes.admin],
     }),
-
     changeStatus: build.mutation({
-      query: ({ userId, role }) => {
-        return {
-          url: `/user/${userId}/status`,
-          method: "PATCH",
-          role,
-        };
-      },
+      query: ({ userId, status }) => ({
+        url: `/user/${userId}/status`,
+        method: "PATCH",
+        status,
+      }),
       invalidatesTags: [tagTypes.user, tagTypes.admin],
     }),
   }),

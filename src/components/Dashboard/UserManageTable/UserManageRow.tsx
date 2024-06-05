@@ -1,48 +1,34 @@
+import { toast } from "sonner";
+import { useState } from "react";
 import {
   useChangeStatusMutation,
   useEditRoleMutation,
 } from "@/redux/features/user";
-
-import { toast } from "sonner";
-import { useEffect, useState } from "react";
 import {
   USER_ROLE,
   UserRole,
+  UserStatus,
   UserStatusType,
 } from "@/components/contants/role";
-import { UserStatus } from "@/components/contants/role";
 
-const UserManageRow = ({ users }: any) => {
-  const [editRole, { isSuccess: roleSuccess, isError: roleError }] =
-    useEditRoleMutation();
-  const [changeStatus, { isSuccess: statusSuccess, isError: statusError }] =
-    useChangeStatusMutation();
+const UserManageRow = ({ users, refetch }: any) => {
+  const [editRole] = useEditRoleMutation();
+  const [changeStatus] = useChangeStatusMutation();
   const [selectRole, setSelectRole] = useState<{ [key: string]: UserRole }>({});
   const [selectStatus, setSelectStatus] = useState<{
     [key: string]: UserStatusType;
   }>({});
 
-  useEffect(() => {
-    if (roleSuccess) {
-      toast.success("Role updated successfully");
-    }
-    if (roleError) {
-      toast.error("Error updating role");
-    }
-    if (statusSuccess) {
-      toast.success("Status updated successfully");
-    }
-    if (statusError) {
-      toast.error("Error updating status");
-    }
-  }, [roleSuccess, roleError, statusSuccess, statusError]);
-
   const handleChangeRole = async (userId: string, newRole: UserRole) => {
+    setSelectRole((prev) => ({ ...prev, [userId]: newRole }));
     try {
-      await editRole({ userId, role: USER_ROLE[newRole] }).unwrap();
-      setSelectRole((prev) => ({ ...prev, [userId]: newRole }));
+      const res = await editRole({ userId, role: newRole }).unwrap();
+      console.log(res, "checking the user role changing status");
+      toast.success("Role updated successfully");
+      refetch(); // Ensure the latest data is fetched after mutation
     } catch (error) {
       console.error("Error updating role:", error);
+      toast.error("Error updating role");
     }
   };
 
@@ -50,11 +36,15 @@ const UserManageRow = ({ users }: any) => {
     userId: string,
     newStatus: UserStatusType
   ) => {
+    setSelectStatus((prev) => ({ ...prev, [userId]: newStatus }));
     try {
-      await changeStatus({ userId, status: newStatus }).unwrap();
-      setSelectStatus((prev) => ({ ...prev, [userId]: newStatus }));
+      const res = await changeStatus({ userId, status: newStatus }).unwrap();
+      console.log(res);
+      toast.success("Status updated successfully");
+      refetch();
     } catch (error) {
       console.error("Error updating status:", error);
+      toast.error("Error updating status");
     }
   };
 
