@@ -5,6 +5,7 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { toast } from "sonner";
 import { storeUserInfo } from "../service/actions/auth.service";
 import { useState } from "react";
+import { FaEye, FaEyeSlash, FaSpinner } from "react-icons/fa";
 
 type Inputs = {
   email: string;
@@ -13,28 +14,36 @@ type Inputs = {
 
 const LoginForm = () => {
   const [error, setError] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+  const [loading, setLoading] = useState(false);
+
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors },
   } = useForm<Inputs>();
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
+    setLoading(true);
     try {
       const res = await loginUser(data);
-      console.log(res);
+
       if (res?.data?.accessToken) {
         toast.success(res?.message);
         storeUserInfo({ accessToken: res?.data?.accessToken });
       } else {
         setError(res.message);
-        console.log(res);
       }
     } catch (error: any) {
       console.log(error);
       toast.error(error.message);
+    } finally {
+      setLoading(false);
     }
+  };
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
   };
 
   return (
@@ -62,22 +71,42 @@ const LoginForm = () => {
           )}
         </div>
 
-        <div className="mb-6">
+        <div className="mb-6 relative">
           <label htmlFor="password" className="block text-gray-700 mb-2">
             Password
           </label>
           <input
-            type="password"
+            type={showPassword ? "text" : "password"}
             className="border-b border-gray-300 w-full focus:outline-none"
             {...register("password", { required: "Password is required" })}
           />
+          <div
+            className="absolute right-3 top-9 cursor-pointer"
+            onClick={togglePasswordVisibility}
+          >
+            {showPassword ? <FaEyeSlash /> : <FaEye />}
+          </div>
           {errors.password && (
             <p className="text-red-600">{errors.password.message}</p>
           )}
         </div>
+
         <div className="flex justify-center items-center">
-          <button className="btn bg-cyan-500 text-white w-full" type="submit">
-            Login Now
+          <button
+            className={`btn bg-cyan-500 text-white w-full ${
+              loading ? "opacity-50 cursor-not-allowed" : ""
+            }`}
+            type="submit"
+            disabled={loading}
+          >
+            {loading ? (
+              <div className="flex justify-center items-center">
+                <FaSpinner className="animate-spin mr-2" />
+                Logging in...
+              </div>
+            ) : (
+              "Login Now"
+            )}
           </button>
         </div>
       </form>

@@ -11,5 +11,10 @@ export const HomeTopBar = () => (
         About Us
       </Link>
     </li>
+    <li>
+      <Link className="cursor-pointer border-r font-bold mr-3" href="/flatCard">
+        Flats
+      </Link>
+    </li>
   </>
 );

@@ -17,13 +17,22 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <Providers>
-      <html lang="en">
-        <body className={inter.className}>
-          <Toaster position="top-center" />
+    <html lang="en">
+      <body className={inter.className}>
+        <Providers>
+          <Toaster
+            position="top-center"
+            toastOptions={{
+              unstyled: true,
+              classNames: {
+                error: "text-[#ff3333]",
+                success: "text-[#22bb33]",
+              },
+            }}
+          />
           <div className="min-h-screen container">{children}</div>
-        </body>
-      </html>
-    </Providers>
+        </Providers>
+      </body>
+    </html>
   );
 }

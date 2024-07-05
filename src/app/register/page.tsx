@@ -6,15 +6,17 @@ import Link from "next/link";
 
 const RegisterPage = () => {
   return (
-    <div className="flex justify-center items-center min-h-screen p-8 bg-gray-100">
-      <div className="max-w-lg shadow-lg w-full border p-8 rounded-xl bg-white">
+    <div className="flex justify-center items-center min-h-screen p-4 sm:p-6 md:p-12 lg:p-24 bg-gray-100">
+      <div className="max-w-md md:max-w-lg lg:max-w-xl shadow-lg w-full border p-6 sm:p-8 md:p-10 lg:p-12 rounded-xl bg-white">
         <div className="flex justify-center mb-4">
           <Image src={logo} alt="logo" width={50} height={50} />
         </div>
-        <h2 className="text-center text-2xl font-medium my-4">Sign Up</h2>
+        <h2 className="text-center text-xl sm:text-2xl md:text-3xl font-medium my-4">
+          Sign Up
+        </h2>
         <RegisterForm />
-        <p className="font-normal text-sm text-center mt-4">
-          You have already signUp!
+        <p className="font-normal text-xs sm:text-sm md:text-base text-center mt-4">
+          You have already signed up!{" "}
           <Link className="text-blue-500" href="/login">
             Login Now
           </Link>

@@ -30,7 +30,7 @@ const Testimonials = () => {
   ];
 
   return (
-    <div className="mx-auto my-10 border-b-2 shadow-md p-6">
+    <section className="mx-auto my-10 border-b-2 shadow-md p-6">
       <h2 className="text-3xl font-bold m-6 text-center gradient-text">
         Testimonials
       </h2>
@@ -72,7 +72,7 @@ const Testimonials = () => {
           </li>
         ))}
       </ul>
-    </div>
+    </section>
   );
 };
 

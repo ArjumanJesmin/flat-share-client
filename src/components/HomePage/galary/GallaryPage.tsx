@@ -23,24 +23,22 @@ const GalleryPage: React.FC = () => {
   ];
 
   return (
-    <>
-      <div className="container mx-auto py-10  mb-10 border shadow-lg bg-slate-50 gradient-text">
-        <h1 className="text-3xl font-bold mb-6 text-center"> Flat Gallery</h1>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 items-center justify-center gap-4">
-          {images.map((image, index) => (
-            <div key={index} className="relative w-full h-64">
-              <Image
-                src={image.src}
-                alt={image.alt}
-                layout="fill"
-                objectFit="cover"
-                className="rounded-lg"
-              />
-            </div>
-          ))}
-        </div>
+    <section className="container mx-auto py-10  mb-10 border shadow-lg bg-slate-50 gradient-text">
+      <h1 className="text-3xl font-bold mb-6 text-center"> Flat Gallery</h1>
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 items-center justify-center gap-4">
+        {images.map((image, index) => (
+          <div key={index} className="relative w-full h-64">
+            <Image
+              src={image.src}
+              alt={image.alt}
+              layout="fill"
+              objectFit="cover"
+              className="rounded-lg"
+            />
+          </div>
+        ))}
       </div>
-    </>
+    </section>
   );
 };
 

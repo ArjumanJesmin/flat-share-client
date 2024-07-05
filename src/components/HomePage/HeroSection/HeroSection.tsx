@@ -53,38 +53,37 @@ const HeroSection = () => {
   });
 
   return (
-    <>
+    <div>
       <div className="grid grid-cols-3 m-8 gap-4">
-        {isSuccess &&
-          data?.data?.slice(0, 3).map((flat: Flat) => {
-            return (
-              <div
-                key={flat.id}
-                className="card card-compact w-96 bg-base-100 shadow-xl m-3"
-                onClick={() => handleOpenModal(flat.id)}
-              >
-                <Image
-                  src={flat?.flatPhotos[0]?.imageUrl}
-                  alt="Flat Image"
-                  width={500}
-                  height={300}
-                  className="object-cover"
-                />
-                <div className="card-body">
-                  <h2 className="card-title">{flat.location}</h2>
-                  <p>{flat.description}</p>
-                  <p>Rent: ${flat.rentAmount}</p>
-                  <p>Bedrooms: {flat.bedrooms}</p>
-                  <p>Amenities: {flat?.amenities}</p>
-                  <div className="card-actions justify-end">
-                    <button className="btn bg-cyan-500 text-white w-full">
-                      Details
-                    </button>
-                  </div>
+        {data?.data?.slice(0, 6).map((flat: Flat) => {
+          return (
+            <div
+              key={flat.id}
+              className="card card-compact w-96 bg-base-100 shadow-xl m-3"
+              onClick={() => handleOpenModal(flat?.id)}
+            >
+              <Image
+                src={flat?.flatPhotos[0]?.imageUrl}
+                alt="Flat Image"
+                width={400}
+                height={300}
+                className="object-cover"
+              />
+              <div className="card-body">
+                <h2 className="card-title">{flat?.location}</h2>
+                <p>{flat.description}</p>
+                <p>Rent: ${flat?.rentAmount}</p>
+                <p>Bedrooms: {flat?.bedrooms}</p>
+                <p>Amenities: {flat?.amenities}</p>
+                <div className="card-actions justify-end">
+                  <button className="btn bg-cyan-500 text-white w-full">
+                    Details
+                  </button>
                 </div>
               </div>
-            );
-          })}
+            </div>
+          );
+        })}
       </div>
       {isModalOpen && !singleFlatLoading && !singleFlatError && (
         <FlatModal
@@ -93,9 +92,7 @@ const HeroSection = () => {
           flat={singleFlat}
         />
       )}
-      {singleFlatLoading && <div>Loading flat details...</div>}
-      {singleFlatError && <div>Error loading flat details.</div>}
-    </>
+    </div>
   );
 };
 

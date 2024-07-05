@@ -1,13 +1,14 @@
 import Link from "next/link";
-import facebook from "@/assets/about/facebook.svg";
-import twitter from "@/assets/about/twitter.svg";
-import instagram from "@/assets/about/instagram.svg";
-import linkedIn from "@/assets/about/linkedIn.svg";
-import Image from "next/image";
+import {
+  FaFacebookSquare,
+  FaTwitter,
+  FaInstagram,
+  FaLinkedin,
+} from "react-icons/fa";
 
 const FooterGrid = () => {
   return (
-    <div className="grid grid-cols-5 gap-4 bg-gradient-to-r from-[#454028] to-custom-light text-white p-4">
+    <div className="grid grid-cols-5 gap-4 bg-[#2b3e50] text-white p-4">
       <div>
         <p>
           <Link className="cursor-pointer hover:underline" href="/aboutUs">
@@ -62,37 +63,38 @@ const FooterGrid = () => {
             +1 234 567 890
           </a>
         </p>
-        <div className="flex mt-3 gap-6 text-white">
+        <div className="flex mt-3 gap-6">
           <a
-            className="hover:underline"
+            className="text-white rounded-full p-3 hover:bg-white hover:text-[#454028]"
             href="https://www.facebook.com/yourprofile"
             target="_blank"
-            style={{ marginRight: "10px" }}
+            rel="noopener noreferrer"
           >
-            <Image src={facebook} alt="facebook" width={15} height={15} />
+            <FaFacebookSquare size={20} />
           </a>
           <a
-            className="hover:underline"
+            className="text-white rounded-full p-3 hover:bg-white hover:text-[#454028]"
             href="https://www.twitter.com/yourprofile"
             target="_blank"
-            style={{ marginRight: "10px" }}
+            rel="noopener noreferrer"
           >
-            <Image src={twitter} alt="facebook" width={15} height={15} />
+            <FaTwitter size={20} />
           </a>
           <a
-            className="hover:underline"
+            className="text-white rounded-full p-3 hover:bg-white hover:text-[#454028]"
             href="https://www.instagram.com/yourprofile"
             target="_blank"
-            style={{ marginRight: "10px" }}
+            rel="noopener noreferrer"
           >
-            <Image src={instagram} alt="facebook" width={15} height={15} />
+            <FaInstagram size={20} />
           </a>
           <a
-            className="hover:underline"
+            className="text-white rounded-full p-3 hover:bg-white hover:text-[#454028]"
             href="https://www.linkedin.com/in/yourprofile"
             target="_blank"
+            rel="noopener noreferrer"
           >
-            <Image src={linkedIn} alt="facebook" width={15} height={15} />
+            <FaLinkedin size={20} />
           </a>
         </div>
       </div>

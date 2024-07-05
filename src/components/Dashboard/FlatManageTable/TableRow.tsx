@@ -6,17 +6,21 @@ import {
 import { Flat } from "@/components/type/flatTypes";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSync } from "@fortawesome/free-solid-svg-icons/faSync";
-import update from "@/assets/pen.svg";
-import Image from "next/image";
-import deleted from "@/assets/trash.svg";
 import { toast } from "sonner";
+import { FaEdit } from "react-icons/fa";
+import { MdDeleteForever } from "react-icons/md";
 
 const TableRow = ({ flats }: any) => {
   const [updateFlat, { isLoading, isSuccess, isError }] =
     useUpdateMyFlatMutation();
   const [
     deleteFlat,
-    { isLoading: isDeleting, isSuccess: deleteSuccess, isError: deleteError },
+    {
+      isLoading: isDeleting,
+      isSuccess: deleteSuccess,
+      isError: deleteError,
+      reset,
+    },
   ] = useDeleteFlatMutation();
 
   const [deletedFlats, setDeletedFlats] = useState<string[]>([]);
@@ -95,38 +99,26 @@ const TableRow = ({ flats }: any) => {
           <td>{new Date(singleData.createdAt).toLocaleString()}</td>
           <td>{new Date(singleData.updatedAt).toLocaleString()}</td>
           <button
-            className={`px-4 py-2 rounded flex items-center ${
-              isLoading ? "text-green-500" : "text-blue-500"
-            } hover:text-blue-300`}
+            className="text-green-500 text-2xl items-center justify-center xy-4"
             onClick={() => handleUpdateClick(singleData)}
             disabled={isLoading}
           >
             {isLoading ? (
-              <FontAwesomeIcon icon={faSync} className="animate-spin mr-2" />
+              <span className="loading loading-bars loading-lg"></span>
             ) : (
-              <Image
-                src={update}
-                alt="Update"
-                className="w-5 h-5 mt-6 mr-2 items-center"
-              />
+              <FaEdit />
             )}
           </button>
           <td>
             <button
-              className={`px-4 py-2 rounded flex items-center ${
-                isDeleting ? "text-red-500" : "text-blue-500"
-              } hover:text-red-300`}
+              className="text-red-500 text-2xl items-center justify-center"
               onClick={() => handleDeleteClick(singleData?.id)}
               disabled={isDeleting}
             >
-              {isDeleting ? (
-                <FontAwesomeIcon icon={faSync} className="animate-spin mr-2" />
+              {isLoading ? (
+                <span className="loading loading-bars loading-lg"></span>
               ) : (
-                <Image
-                  src={deleted}
-                  alt="Delete"
-                  className="w-12 h-12 mr-2 items-center"
-                />
+                <MdDeleteForever />
               )}
             </button>
           </td>

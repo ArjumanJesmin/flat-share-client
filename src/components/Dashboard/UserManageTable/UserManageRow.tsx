@@ -25,7 +25,7 @@ const UserManageRow = ({ users, refetch }: any) => {
       const res = await editRole({ userId, role: newRole }).unwrap();
       console.log(res, "checking the user role changing status");
       toast.success("Role updated successfully");
-      refetch(); // Ensure the latest data is fetched after mutation
+      refetch();
     } catch (error) {
       console.error("Error updating role:", error);
       toast.error("Error updating role");

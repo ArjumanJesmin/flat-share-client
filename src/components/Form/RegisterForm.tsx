@@ -1,12 +1,13 @@
 "use client";
 
-import { useState } from "react";
-import { useForm, SubmitHandler } from "react-hook-form";
-import { toast } from "sonner";
-import { loginUser } from "../service/actions/userLogin";
-import { storeUserInfo } from "../service/actions/auth.service";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
+import { SubmitHandler, useForm } from "react-hook-form";
+import { FaEye, FaEyeSlash, FaSpinner } from "react-icons/fa";
+import { toast } from "sonner";
+import { storeUserInfo } from "../service/actions/auth.service";
 import { registerUser } from "../service/actions/registerUser";
+import { loginUser } from "../service/actions/userLogin";
 
 type Inputs = {
   username: string;
@@ -18,6 +19,10 @@ type Inputs = {
 const RegisterForm = () => {
   const router = useRouter();
   const [error, setError] = useState<boolean>(false);
+  const [showPassword, setShowPassword] = useState<boolean>(false);
+  const [showPasswordConfirmation, setShowPasswordConfirmation] =
+    useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(false);
   const {
     register,
     handleSubmit,
@@ -26,6 +31,7 @@ const RegisterForm = () => {
   } = useForm<Inputs>();
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
+    setLoading(true);
     const { password, passwordConfirmation, ...userData } = data;
 
     if (password && passwordConfirmation) {
@@ -41,10 +47,7 @@ const RegisterForm = () => {
 
           if (result?.data?.accessToken) {
             storeUserInfo({ accessToken: result?.data?.accessToken });
-            // router.push("/dashboard");
-            // {
-            //   redirect: "/dashboard",
-            // };
+            router.push("/dashboard");
           }
         }
       } catch (error: any) {
@@ -95,12 +98,12 @@ const RegisterForm = () => {
           )}
         </div>
 
-        <div className="mb-6">
+        <div className="mb-6 relative">
           <label htmlFor="password" className="block text-gray-700 mb-2">
             Password
           </label>
           <input
-            type="password"
+            type={showPassword ? "text" : "password"}
             className="border-b border-gray-300 w-full focus:outline-none"
             {...register("password", {
               required: "Password is required",
@@ -110,12 +113,18 @@ const RegisterForm = () => {
               },
             })}
           />
+          <div
+            className="absolute right-3 top-9 cursor-pointer"
+            onClick={() => setShowPassword(!showPassword)}
+          >
+            {showPassword ? <FaEyeSlash /> : <FaEye />}
+          </div>
           {errors.password && (
             <span className="text-red-500">{errors.password.message}</span>
           )}
         </div>
 
-        <div className="mb-6">
+        <div className="mb-6 relative">
           <label
             htmlFor="passwordConfirmation"
             className="block text-gray-700 mb-2"
@@ -123,7 +132,7 @@ const RegisterForm = () => {
             Confirm Password
           </label>
           <input
-            type="password"
+            type={showPasswordConfirmation ? "text" : "password"}
             className="border-b border-gray-300 w-full focus:outline-none"
             {...register("passwordConfirmation", {
               required: "Password confirmation is required",
@@ -131,6 +140,14 @@ const RegisterForm = () => {
                 value === password || "Passwords do not match",
             })}
           />
+          <div
+            className="absolute right-3 top-9 cursor-pointer"
+            onClick={() =>
+              setShowPasswordConfirmation(!showPasswordConfirmation)
+            }
+          >
+            {showPasswordConfirmation ? <FaEyeSlash /> : <FaEye />}
+          </div>
           {errors.passwordConfirmation && (
             <span className="text-red-500">
               {errors.passwordConfirmation.message}
@@ -139,8 +156,21 @@ const RegisterForm = () => {
         </div>
 
         <div className="flex justify-center items-center">
-          <button className="btn bg-cyan-500 text-white w-full" type="submit">
-            Register Now
+          <button
+            className={`btn bg-cyan-500 text-white w-full ${
+              loading ? "opacity-50 cursor-not-allowed" : ""
+            }`}
+            type="submit"
+            disabled={loading}
+          >
+            {loading ? (
+              <div className="flex justify-center items-center">
+                <FaSpinner className="animate-spin mr-2" />
+                Registering...
+              </div>
+            ) : (
+              "Register Now"
+            )}
           </button>
         </div>
       </form>

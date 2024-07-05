@@ -7,7 +7,11 @@ const MyShareFlatRequest = () => {
 
   // Handle loading state
   if (isLoading) {
-    return <div>Loading...</div>;
+    return (
+      <div>
+        <span className="loading loading-bars loading-md"></span>
+      </div>
+    );
   }
 
   // Handle error state

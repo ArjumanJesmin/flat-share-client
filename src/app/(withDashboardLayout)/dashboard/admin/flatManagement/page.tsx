@@ -2,9 +2,9 @@ import FlatManageTable from "@/components/Dashboard/FlatManageTable/FlatManageTa
 
 const FlatManagementPage = () => {
   return (
-    <div>
+    <>
       <FlatManageTable />
-    </div>
+    </>
   );
 };
 

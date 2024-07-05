@@ -2,10 +2,10 @@
 import { usePostFlatMutation } from "@/redux/features/flat";
 import { useState } from "react";
 import { useForm, SubmitHandler, FieldValues } from "react-hook-form";
-import upload from "@/assets/upload.svg";
-import Image from "next/image";
 import { toast } from "sonner";
 import axios from "axios";
+import { LuUpload } from "react-icons/lu";
+import { FaSpinner } from "react-icons/fa";
 
 type Inputs = {
   location: string;
@@ -203,12 +203,7 @@ const FlatPostForm = () => {
                   className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
                 />
                 <div className="flex items-center w-full cursor-pointer">
-                  <Image
-                    src={upload}
-                    alt="upload file"
-                    width={30}
-                    height={30}
-                  />
+                  <LuUpload />
                   <span className="ml-2 text-gray-500">
                     {selectedFiles.length > 0
                       ? selectedFiles.map((file, index) => (
@@ -240,8 +235,16 @@ const FlatPostForm = () => {
           </div>
 
           <div className="w-1/2 mx-auto mt-8">
-            <button type="submit" className="btn bg-cyan-500 text-white w-full">
-              Submit
+            <button
+              type="submit"
+              className="btn bg-cyan-500 text-white w-full"
+              disabled={isLoading}
+            >
+              {isLoading ? (
+                <FaSpinner className="animate-spin mr-2" />
+              ) : (
+                "Submit"
+              )}
             </button>
           </div>
         </form>

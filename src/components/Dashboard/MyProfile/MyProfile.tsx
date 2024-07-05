@@ -1,5 +1,6 @@
 "use client";
-import editUser from "@/assets/pen.svg";
+
+import { FaRegEdit } from "react-icons/fa";
 import user from "@/assets/user.svg";
 import ChangePasswordModal from "@/components/Form/ChangePasswordModal";
 import {
@@ -63,7 +64,7 @@ const MyProfile = () => {
             <div className="card-body">
               <div className="flex justify-between items-center">
                 <h2 className="card-title">Personal Information</h2>
-                <Image src={editUser} alt="Edit image" width={20} height={20} />
+                <FaRegEdit size={20} />
               </div>
               <p>If a dog chews shoes whose shoes does he choose?</p>
             </div>
@@ -76,12 +77,7 @@ const MyProfile = () => {
               <div className="flex justify-between items-center">
                 <h2 className="card-title">Password</h2>
                 <button onClick={() => setIsModalOpen(true)}>
-                  <Image
-                    src={editUser}
-                    alt="Edit image"
-                    width={20}
-                    height={20}
-                  />
+                  <FaRegEdit size={20} />
                 </button>
               </div>
               <p>

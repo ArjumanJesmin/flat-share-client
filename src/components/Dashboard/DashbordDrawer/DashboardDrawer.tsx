@@ -1,7 +1,6 @@
 "use client";
 
-import logo from "@/assets/logo.svg";
-import Image from "next/image";
+import { GiVineFlower } from "react-icons/gi";
 import Sidebar from "../Sidebar/Sidebar";
 import { drawerItems } from "@/components/utils/drawerItems";
 import { useEffect, useState } from "react";
@@ -41,15 +40,9 @@ const DashboardDrawer = ({ children }: { children: React.ReactNode }) => {
           className="drawer-overlay"
         ></label>
 
-        <ul className="menu p-12  min-h-full w-full bg-[#FFFAE6] text-[#002379]">
+        <ul className="menu p-12  min-h-full w-full bg-[#2b3e50] text-white">
           {/* Sidebar content here */}
-          <Image
-            src={logo}
-            alt="logo"
-            width={50}
-            height={50}
-            className="items-center mx-auto my-4"
-          />
+          <GiVineFlower size={40} className="justify-center items-center" />
           {/* sidebar */}
           <div className="">
             {drawerItems(userRole as UserRole).map((item, index) => (
@@ -57,9 +50,7 @@ const DashboardDrawer = ({ children }: { children: React.ReactNode }) => {
             ))}
           </div>
           <li>
-            <Link className="text-[#002379]" href="/">
-              Home Page
-            </Link>
+            <Link href="/">Home Page</Link>
           </li>
         </ul>
       </div>

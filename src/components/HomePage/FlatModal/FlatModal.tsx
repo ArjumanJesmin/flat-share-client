@@ -82,7 +82,7 @@ const FlatModal: React.FC<FlatModalProps> = ({
           </Carousel>
         ) : (
           <Image
-            src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg"
+            src="https://img.freepik.com/premium-photo/apartment-building_84738-8633.jpg?w=740"
             alt="Default Image"
             width={500}
             height={300}

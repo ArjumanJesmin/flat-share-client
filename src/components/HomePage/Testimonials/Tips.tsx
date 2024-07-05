@@ -38,7 +38,7 @@ const Tips = () => {
   ];
 
   return (
-    <div>
+    <section>
       <h2 className="text-3xl font-bold m-6 text-center gradient-text">
         Tips for Finding and Sharing Flats
       </h2>
@@ -59,7 +59,7 @@ const Tips = () => {
           </div>
         ))}
       </div>
-    </div>
+    </section>
   );
 };
 

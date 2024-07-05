@@ -20,7 +20,7 @@ const FlatList: React.FC<FlatListProps> = ({
 
   return (
     <div>
-      <ul className="space-y-4 grid grid-cols-2 gap-4">
+      <ul className="space-y-4 grid grid-cols-2 gap-4 lg:mx-16">
         {flats?.data?.map((flat: any) => (
           <li
             key={flat.id}
@@ -42,7 +42,7 @@ const FlatList: React.FC<FlatListProps> = ({
               <div className="mt-4 md:mt-0 md:ml-6">
                 <Image
                   src={flat?.flatPhotos[0]?.imageUrl}
-                  alt={`Photo of ${flat.location}`}
+                  alt="Flat Image"
                   width={300}
                   height={200}
                   className="w-full md:w-48 h-32 object-cover rounded-lg"
