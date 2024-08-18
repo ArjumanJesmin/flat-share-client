@@ -9,7 +9,6 @@ import dynamic from "next/dynamic";
 import { getUserInfo } from "@/components/service/actions/auth.service";
 import { LuLogIn } from "react-icons/lu";
 
-// Define the type for userInfo
 interface UserInfo {
   email?: string;
 }
@@ -23,7 +22,6 @@ const Navbar = () => {
   const [userInfo, setUserInfo] = useState<UserInfo | null>(null);
 
   useEffect(() => {
-    // Fetch user info on the client side
     const fetchUserInfo = async () => {
       const info = await getUserInfo();
       setUserInfo(info);
@@ -32,7 +30,7 @@ const Navbar = () => {
   }, []);
 
   return (
-    <div className="navbar bg-[#2b3e50]">
+    <div className="navbar shadow-xl">
       <div className="navbar-start">
         {/* Dropdown for mobile view */}
         <div className="dropdown">
@@ -59,11 +57,13 @@ const Navbar = () => {
             <HomeTopBar />
           </ul>
         </div>
-        <GiVineFlower size={40} className="text-white" />
+        <h2 className="text-primary-main text-2xl font-bold">
+          Flat <span className="text-secondary-main">Fusion</span>
+        </h2>
       </div>
 
       {/* Navbar items for large screens */}
-      <div className="navbar-center hidden lg:flex text-white">
+      <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-6 mx-4">
           <HomeTopBar />
         </ul>
@@ -73,11 +73,11 @@ const Navbar = () => {
         <div className="dropdown dropdown-end">
           <div tabIndex={0} role="button">
             {userInfo?.email ? (
-              <div className="pr-5 cursor-pointer font-bold text-xl text-white hover:text-sky-500">
+              <div className="pr-5 cursor-pointer font-bold text-xl text-secondary-main hover:text-primary-main">
                 {userInfo.email}
               </div>
             ) : (
-              <LuLogIn size={30} className="text-white" />
+              <LuLogIn size={30} className="text-secondary-main" />
             )}
           </div>
           <ul

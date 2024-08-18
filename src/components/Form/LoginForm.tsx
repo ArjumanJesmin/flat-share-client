@@ -16,6 +16,7 @@ const LoginForm = () => {
   const [error, setError] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const {
     register,
@@ -44,6 +45,10 @@ const LoginForm = () => {
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
+  };
+
+  const toggleModal = () => {
+    setIsModalOpen(!isModalOpen);
   };
 
   return (
@@ -109,7 +114,45 @@ const LoginForm = () => {
             )}
           </button>
         </div>
+
+        {/* Button to open the modal */}
+        <button
+          className="btn mt-4 w-full btn-outline btn-info text-white"
+          type="button"
+          onClick={toggleModal}
+        >
+          Demo User Data
+        </button>
       </form>
+
+      {/* Modal Dialog */}
+      {isModalOpen && (
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
+          <div className="bg-white p-6 rounded-md shadow-lg max-w-sm w-full">
+            <h3 className="font-bold text-lg">Admin Data</h3>
+            <p className="py-4">
+              Email: <span className="font-medium">jaba@gmail.com</span>
+              <br />
+              Password: <span className="font-medium">123456</span>
+            </p>
+            <h3 className="font-bold text-lg">User Data</h3>
+            <p className="py-4">
+              Email: <span className="font-medium">abc@gmail.com</span>
+              <br />
+              Password: <span className="font-medium">123456</span>
+            </p>
+            <div className="modal-action">
+              {/* Close button */}
+              <button
+                className="btn btn-outline btn-info text-white"
+                onClick={toggleModal}
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

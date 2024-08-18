@@ -6,12 +6,12 @@ import LoginForm from "@/components/Form/LoginForm";
 
 const LoginPage = () => {
   return (
-    <div className="flex justify-center items-center min-h-screen p-4 sm:p-6 md:p-12 lg:p-24 bg-gray-100">
+    <div className="card card-compact bg-base-100 w-96 shadow-xl mt-12 mx-auto">
       <div className="max-w-md md:max-w-lg lg:max-w-xl shadow-lg w-full border p-6 sm:p-8 md:p-10 lg:p-12 rounded-xl bg-white">
         <div className="flex justify-center mb-4">
-          <Image src={logo} alt="logo" width={50} height={50} />
+          <Image src={logo} alt="logo" width={40} height={40} />
         </div>
-        <h2 className="text-center text-xl sm:text-2xl md:text-3xl font-medium my-4">
+        <h2 className="text-center text-xl sm:text-2xl md:text-2xl font-medium my-4">
           Login
         </h2>
         <LoginForm />

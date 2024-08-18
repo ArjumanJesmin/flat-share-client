@@ -8,7 +8,7 @@ import {
 
 const FooterGrid = () => {
   return (
-    <div className="grid grid-cols-5 gap-4 bg-[#2b3e50] text-white p-4">
+    <div className="grid grid-cols-5 gap-4 bg-secondary-main border-t-2 border-primary-main text-white p-4">
       <div>
         <p>
           <Link className="cursor-pointer hover:underline" href="/aboutUs">
@@ -63,9 +63,9 @@ const FooterGrid = () => {
             +1 234 567 890
           </a>
         </p>
-        <div className="flex mt-3 gap-6">
+        <div className="flex mt-3 gap-4">
           <a
-            className="text-white rounded-full p-3 hover:bg-white hover:text-[#454028]"
+            className="text-white rounded-full p-3 bg-secondary-light hover:bg-white hover:text-[#454028]"
             href="https://www.facebook.com/yourprofile"
             target="_blank"
             rel="noopener noreferrer"
@@ -73,7 +73,7 @@ const FooterGrid = () => {
             <FaFacebookSquare size={20} />
           </a>
           <a
-            className="text-white rounded-full p-3 hover:bg-white hover:text-[#454028]"
+            className="text-white rounded-full p-3 bg-secondary-light hover:bg-white hover:text-[#454028]"
             href="https://www.twitter.com/yourprofile"
             target="_blank"
             rel="noopener noreferrer"
@@ -81,7 +81,7 @@ const FooterGrid = () => {
             <FaTwitter size={20} />
           </a>
           <a
-            className="text-white rounded-full p-3 hover:bg-white hover:text-[#454028]"
+            className="text-white rounded-full p-3 bg-secondary-light hover:bg-white hover:text-[#454028]"
             href="https://www.instagram.com/yourprofile"
             target="_blank"
             rel="noopener noreferrer"
@@ -89,7 +89,7 @@ const FooterGrid = () => {
             <FaInstagram size={20} />
           </a>
           <a
-            className="text-white rounded-full p-3 hover:bg-white hover:text-[#454028]"
+            className="text-white rounded-full p-3 bg-secondary-light hover:bg-white hover:text-[#454028]"
             href="https://www.linkedin.com/in/yourprofile"
             target="_blank"
             rel="noopener noreferrer"
@@ -113,7 +113,7 @@ const FooterGrid = () => {
           </Link>
         </p>
       </div>
-      <div className="col-span-5 text-center mt-4">
+      <div className="col-span-5 text-center mt-4 bg-secondary-light p-8">
         <p>&copy; 2024 Your Company Name. All rights reserved.</p>
       </div>
     </div>

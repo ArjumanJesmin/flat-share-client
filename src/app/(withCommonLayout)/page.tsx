@@ -6,7 +6,7 @@ import GalleryPage from "@/components/HomePage/galary/GallaryPage";
 
 const HomePage = () => {
   return (
-    <div>
+    <div className="max-w-screen-xl mx-auto">
       <CoverSection />
       <SearchArea />
       <GalleryPage />
