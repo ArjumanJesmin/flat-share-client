@@ -4,6 +4,8 @@ import { useState } from "react";
 import FlatList from "./FlatList";
 import { useGetFlatQuery } from "@/redux/features/flat";
 import SearchBar from "@/components/Form/SearchBar";
+import Image from "next/image";
+import cardBg from "@/assets/card_bg.png";
 
 const SearchArea: React.FC = () => {
   const [searchCriteria, setSearchCriteria] = useState({
@@ -26,9 +28,21 @@ const SearchArea: React.FC = () => {
   const totalFlats = data?.meta?.total ?? 0;
 
   return (
-    <div className="flex  flex-col items-center justify-center min-h-screen bg-gray-200">
+    <div className="flex relative flex-col items-center justify-center min-h-screen bg-gray-200">
+      <div className="absolute inset-0">
+        <Image
+          alt="Background Image"
+          src={cardBg}
+          quality={100}
+          fill
+          sizes="100vw"
+          style={{
+            objectFit: "cover",
+          }}
+        />
+      </div>
       <div className="text-center">
-        <h1 className="text-3xl font-bold my-6 gradient-text">
+        <h1 className="text-3xl font-bold my-6 text-secondary-main">
           Find Your Perfect Flat-mate Today!
         </h1>
       </div>
