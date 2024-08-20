@@ -13,6 +13,7 @@ const SearchBar: React.FC<Props> = ({ onSearch }) => {
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
     let searchCriteria: Record<string, any> = { page: 1 };
+    console.log(activeTab);
 
     if (activeTab === "location") {
       searchCriteria.location = location;
@@ -34,7 +35,10 @@ const SearchBar: React.FC<Props> = ({ onSearch }) => {
               ? "bg-primary-main text-white"
               : "bg-gray-200 text-black"
           } rounded-lg`}
-          onClick={() => setActiveTab("location")}
+          onClick={() => {
+            setActiveTab("location");
+            console.log("Active tab set to:", "location");
+          }}
         >
           Location
         </button>
@@ -44,7 +48,10 @@ const SearchBar: React.FC<Props> = ({ onSearch }) => {
               ? "bg-primary-main text-white"
               : "bg-gray-200 text-black"
           } rounded-lg ml-2`}
-          onClick={() => setActiveTab("priceRange")}
+          onClick={() => {
+            setActiveTab("priceRange");
+            console.log("Active tab set to:", "priceRange");
+          }}
         >
           Price Range
         </button>
@@ -54,11 +61,15 @@ const SearchBar: React.FC<Props> = ({ onSearch }) => {
               ? "bg-primary-main text-white"
               : "bg-gray-200 text-black"
           } rounded-lg ml-2`}
-          onClick={() => setActiveTab("bedrooms")}
+          onClick={() => {
+            setActiveTab("bedrooms");
+            console.log("Active tab set to:", "bedrooms");
+          }}
         >
           Bedrooms
         </button>
       </div>
+
       <form onSubmit={handleSubmit} className="mt-4 w-full mx-auto">
         <div className="flex">
           {activeTab === "location" && (

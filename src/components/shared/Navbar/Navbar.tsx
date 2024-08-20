@@ -3,8 +3,6 @@
 import { useEffect, useState } from "react";
 import { HomeTopBar } from "./HomeTopBar";
 
-import { GiVineFlower } from "react-icons/gi";
-import Image from "next/image";
 import dynamic from "next/dynamic";
 import { getUserInfo } from "@/components/service/actions/auth.service";
 import { LuLogIn } from "react-icons/lu";

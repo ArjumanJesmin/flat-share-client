@@ -98,7 +98,7 @@ const LoginForm = () => {
 
         <div className="flex justify-center items-center">
           <button
-            className={`btn bg-cyan-500 text-white w-full ${
+            className={`btn bg-primary-main text-white w-full ${
               loading ? "opacity-50 cursor-not-allowed" : ""
             }`}
             type="submit"

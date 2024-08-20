@@ -52,8 +52,13 @@ const FlatList: React.FC<FlatListProps> = ({
           </li>
         ))}
       </ul>
-      <div className="flex justify-center mt-4">
-        <button onClick={() => onPageChange(page - 1)} disabled={page === 1}>
+
+      {/* <div className="flex justify-center mt-4">
+        <button
+          onClick={() => onPageChange(page - 1)}
+          disabled={page === 1}
+          className={`btn ${page === 1 ? "btn-disabled" : ""}`}
+        >
           Previous
         </button>
         <span className="mx-2">
@@ -62,18 +67,18 @@ const FlatList: React.FC<FlatListProps> = ({
         <button
           onClick={() => onPageChange(page + 1)}
           disabled={page === totalPages}
+          className={`btn ${page === totalPages ? "btn-disabled" : ""}`}
         >
           Next
         </button>
-      </div>
-      <div className="flex justify-center mt-4">
+      </div> */}
+
+      <div className="flex justify-center mt-4 space-x-1">
         {[...Array(totalPages)].map((_, index) => (
           <button
             key={index}
             onClick={() => onPageChange(index + 1)}
-            className={`join-item btn ${
-              page === index + 1 ? "btn-active" : ""
-            }`}
+            className={`btn ${page === index + 1 ? "btn-active" : ""}`}
           >
             {index + 1}
           </button>

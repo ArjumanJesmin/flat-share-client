@@ -1,7 +1,6 @@
 "use client";
 import Image from "next/image";
-import flatImage from "@/assets/bgFlat.svg"; // Background image
-import anotherImage from "@/assets/flat.jpg"; // Additional image
+import flatImage from "@/assets/slider-3.jpg";
 import Link from "next/link";
 import { BsBuildingsFill } from "react-icons/bs";
 import { MdEnergySavingsLeaf } from "react-icons/md";
@@ -42,31 +41,19 @@ const CoverSection = () => {
           </Link>
         </div>
         {/* Icon and Another Image */}
-        <div className="mt-8 flex items-center gap-6">
+        <div className=" flex items-center gap-6">
           <div className="relative">
             <BsBuildingsFill
               size={60}
-              className="text-primary-main mr-4 rounded-full p-4 bg-white hover:bg-secondary-light1 mb-2"
+              className="text-primary-main mr-4 rounded-full p-4 bg-white hover:bg-secondary-light mb-2"
             />
             <MdEnergySavingsLeaf
               size={60}
-              className="text-primary-main mr-4 rounded-full p-4 bg-white hover:bg-secondary-light1 mb-2"
+              className="text-primary-main mr-4 rounded-full p-4 bg-white hover:bg-secondary-light mb-2"
             />
             <GiHealthPotion
               size={60}
-              className="text-primary-main mr-4 rounded-full p-4 bg-white hover:bg-secondary-light1"
-            />
-          </div>
-          <div className="relative w-full h-full rounded-s-sm">
-            <Image
-              alt="Another Image"
-              src={anotherImage}
-              quality={100}
-              fill
-              style={{
-                objectFit: "contain",
-                borderRadius: "border-radius: 50% 20% / 10% 40%;",
-              }}
+              className="text-primary-main mr-4 rounded-full p-4 bg-white hover:bg-secondary-light"
             />
           </div>
         </div>

@@ -9,6 +9,7 @@ import five from "@/assets/galary/five.jpg";
 import six from "@/assets/galary/six.jpg";
 import seven from "@/assets/galary/seven.jpg";
 import eight from "@/assets/galary/eight.jpg";
+import TitleWithSubtitle from "@/components/utils/TitleWithSubtitle";
 
 const GalleryPage: React.FC = () => {
   const images = [
@@ -24,7 +25,8 @@ const GalleryPage: React.FC = () => {
 
   return (
     <section className="container mx-auto py-10  mb-10 border shadow-lg bg-slate-50 gradient-text">
-      <h1 className="text-3xl font-bold mb-6 text-center"> Flat Gallery</h1>
+      <TitleWithSubtitle subtitle="Welcome to My Site" title="Flat Gallery!" />
+      {/* <h1 className="text-3xl font-bold mb-6 text-center"> Flat Gallery</h1> */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 items-center justify-center gap-4">
         {images.map((image, index) => (
           <div key={index} className="relative w-full h-64">

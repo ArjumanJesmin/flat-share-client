@@ -17,14 +17,12 @@ const SearchArea: React.FC = () => {
   });
 
   const { data, isError } = useGetFlatQuery(searchCriteria);
+  console.log(data);
 
   const handleSearch = (criteria: Record<string, any>) => {
     setSearchCriteria({ ...searchCriteria, ...criteria });
   };
 
-  if (isError) {
-    return <div>Error loading flats</div>;
-  }
   const totalFlats = data?.meta?.total ?? 0;
 
   return (
