@@ -1,95 +1,137 @@
+import Image from "next/image";
 import {
   FaFacebookSquare,
   FaTwitter,
   FaInstagram,
   FaPhoneAlt,
+  FaLinkedin,
 } from "react-icons/fa";
 import { MdOutlineMail } from "react-icons/md";
+import flatImage from "@/assets/slider-3.jpg";
+import image from "@/assets/flat.jpg";
+import TitleWithSubtitle from "@/components/utils/TitleWithSubtitle";
 
 const AboutUs: React.FC = () => {
   return (
-    <div className="mt-12 bg-white p-8 rounded-lg shadow-2xl max-w-4xl mx-auto mb-8">
-      <h2 className="text-4xl font-bold mb-6 text-center">About Us</h2>
-
-      <section className="mb-8">
-        <h3 className="text-2xl font-semibold mb-4">Our Mission</h3>
-        <p>
-          Our mission is to make finding the perfect flat-mate easy and
-          stress-free. We provide a platform that connects individuals looking
-          for shared living spaces, ensuring compatibility and comfort for
-          everyone involved.
-        </p>
-      </section>
-
-      <section className="mb-8">
-        <h3 className="text-2xl font-semibold mb-4">Meet the Team</h3>
-        <p>
-          We are a team of dedicated professionals committed to helping you find
-          the perfect living arrangement. Our team consists of:
-        </p>
-        <ul className="list-disc list-inside mt-4">
-          <li>
-            <strong>John Doe</strong> - Founder & CEO
-          </li>
-          <li>
-            <strong>Jane Smith</strong> - Chief Operating Officer
-          </li>
-          <li>
-            <strong>Emily Johnson</strong> - Lead Developer
-          </li>
-          <li>
-            <strong>Michael Brown</strong> - Marketing Director
-          </li>
-        </ul>
-      </section>
-
-      <section>
-        <h3 className="text-2xl font-semibold mb-4">Contact Us</h3>
-        <p>
-          If you have any questions or need assistance, feel free to reach out
-          to us:
-        </p>
-        <div className="mt-4 flex flex-col gap-2">
-          <div className="flex items-center gap-2">
-            <MdOutlineMail size={20} />
-            Email:
-            <span className="text-blue-500">info@flatshare.com</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <FaPhoneAlt />
-            Phone: <span className="text-blue-500">+1 (234) 567-890</span>
-          </div>
+    <main>
+      <section className="relative mb-30 h-[400px]">
+        {/* Background Image */}
+        <div className="absolute inset-0 ">
+          <Image
+            alt="Background Image"
+            src={flatImage}
+            quality={100}
+            fill
+            sizes="100vw"
+            style={{
+              objectFit: "cover",
+            }}
+          />
+          <div className="absolute inset-0 bg-secondary-light1 opacity-30"></div>
         </div>
 
-        <p className="mt-4">Follow us on social media:</p>
-        <div className="flex space-x-4 mt-4">
-          <a
-            href="https://facebook.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-white bg-teal-500  p-3 rounded-full"
-          >
-            <FaFacebookSquare size={20} />
-          </a>
-          <a
-            href="https://twitter.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-white bg-teal-500  p-3 rounded-full"
-          >
-            <FaTwitter size={20} />
-          </a>
-          <a
-            href="https://instagram.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-white bg-teal-500  p-3 rounded-full"
-          >
-            <FaInstagram size={20} />
-          </a>
+        {/* Content Container */}
+        <div className="relative z-10 flex flex-col items-start text-left text-secondary-main p-6">
+          <TitleWithSubtitle
+            title="This is About Us"
+            subtitle="Every body know about us section"
+          />
         </div>
       </section>
-    </div>
+
+      <section className="container grid grid-cols-2 gap-16 my-8 justify-center items-center">
+        <div>
+          <Image
+            className="border-l-[24px] border-primary-main "
+            alt="Background Image"
+            src={image}
+            quality={100}
+            style={{
+              objectFit: "cover",
+              borderRadius: "90% 70% 30% 0%",
+            }}
+          />
+        </div>
+
+        {/* write side data */}
+        <div>
+          <TitleWithSubtitle
+            title="This is About Us"
+            subtitle="Every body know about us section"
+          />
+          <div className="mb-8">
+            <h3 className="text-2xl font-semibold mb-4">Our Mission</h3>
+            <p className="text-gray-600">
+              Our mission is to make finding the perfect flat-mate easy and
+              stress-free. We provide a platform that connects individuals
+              looking for shared living spaces, ensuring compatibility and
+              comfort for everyone involved.
+            </p>
+          </div>
+
+          <div>
+            <h3 className="text-2xl font-semibold mb-4">Contact Us</h3>
+            <p className="text-gray-600">
+              If you have any questions or need assistance, feel free to reach
+              out to us:
+            </p>
+            <div className="mt-4 flex flex-col gap-2">
+              <div className="flex items-center gap-2">
+                <MdOutlineMail size={20} />
+                Email:
+                <span>info@flatshare.com</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <FaPhoneAlt />
+                Phone: <span>+1 (234) 567-890</span>
+              </div>
+            </div>
+            <div>
+              <p>
+                Phone:{" "}
+                <a className="hover:underline" href="tel:+1234567890">
+                  +1 234 567 890
+                </a>
+              </p>
+              <div className="flex mt-3 gap-4">
+                <a
+                  className="text-white rounded-full p-3 bg-primary-main hover:bg-secondary-light1"
+                  href="https://www.facebook.com/yourprofile"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <FaFacebookSquare size={15} />
+                </a>
+                <a
+                  className="text-white rounded-full p-3 bg-primary-main hover:bg-secondary-light1"
+                  href="https://www.twitter.com/yourprofile"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <FaTwitter size={15} />
+                </a>
+                <a
+                  className="text-white rounded-full p-3 bg-primary-main hover:bg-secondary-light1"
+                  href="https://www.instagram.com/yourprofile"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <FaInstagram size={15} />
+                </a>
+                <a
+                  className="text-white rounded-full p-3 bg-primary-main hover:bg-secondary-light1"
+                  href="https://www.linkedin.com/in/yourprofile"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <FaLinkedin size={15} />
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
   );
 };
 

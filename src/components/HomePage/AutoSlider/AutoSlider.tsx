@@ -42,7 +42,7 @@ const AutoSlider = () => {
           }}
         />
         {/* Background overlay */}
-        <div className="absolute inset-0 bg-secondary-main opacity-90"></div>
+        {/* <div className="absolute inset-0 bg-secondary-main opacity-90"></div> */}
       </div>
       <div className="relative z-10 w-3/4 mx-auto my-32">
         <Slider {...settings}>
@@ -52,8 +52,8 @@ const AutoSlider = () => {
               className="card w-60 ml-4 h-44 border-t-8 border-primary-main shadow-xl"
             >
               <div className="card-body">
-                <h2 className="card-title text-white">{item.location}</h2>
-                <p className="text-gray-300">{item.description}</p>
+                <h2 className="card-title ext-gray-700">{item.location}</h2>
+                <p className="text-gray-500">{item.description}</p>
               </div>
             </div>
           ))}

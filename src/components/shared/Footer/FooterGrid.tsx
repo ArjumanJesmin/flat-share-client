@@ -8,7 +8,7 @@ import {
 
 const FooterGrid = () => {
   return (
-    <div className="grid grid-cols-5 gap-4 bg-secondary-main border-t-2 border-primary-main text-white p-4">
+    <div className="grid grid-cols-5 gap-4 bg-secondary-main text-white p-4">
       <div>
         <p>
           <Link className="cursor-pointer hover:underline" href="/aboutUs">
