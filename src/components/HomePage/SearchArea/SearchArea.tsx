@@ -6,6 +6,7 @@ import { useGetFlatQuery } from "@/redux/features/flat";
 import SearchBar from "@/components/Form/SearchBar";
 import Image from "next/image";
 import cardBg from "@/assets/card_bg.png";
+import TitleWithSubtitle from "@/components/utils/TitleWithSubtitle";
 
 const SearchArea: React.FC = () => {
   const [searchCriteria, setSearchCriteria] = useState({
@@ -17,7 +18,6 @@ const SearchArea: React.FC = () => {
   });
 
   const { data, isError } = useGetFlatQuery(searchCriteria);
-  console.log(data);
 
   const handleSearch = (criteria: Record<string, any>) => {
     setSearchCriteria({ ...searchCriteria, ...criteria });
@@ -26,7 +26,7 @@ const SearchArea: React.FC = () => {
   const totalFlats = data?.meta?.total ?? 0;
 
   return (
-    <div className="flex relative flex-col items-center justify-center min-h-screen bg-gray-200">
+    <div className="flex py-8 relative flex-col items-center justify-center min-h-screen bg-gray-200">
       <div className="absolute inset-0">
         <Image
           alt="Background Image"
@@ -40,9 +40,10 @@ const SearchArea: React.FC = () => {
         />
       </div>
       <div className="text-center">
-        <h1 className="text-3xl font-bold my-6 text-secondary-main">
-          Find Your Perfect Flat-mate Today!
-        </h1>
+        <TitleWithSubtitle
+          subtitle="Welcome to My Site"
+          title="Find Your Perfect Flat-mate Today!"
+        />
       </div>
       <SearchBar onSearch={handleSearch} />
       {data && (

@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "next/image";
+import TitleWithSubtitle from "@/components/utils/TitleWithSubtitle";
 
 const Tips = () => {
   const tips = [
@@ -38,24 +39,28 @@ const Tips = () => {
   ];
 
   return (
-    <section>
-      <h2 className="text-3xl font-bold m-6 text-center gradient-text">
-        Tips for Finding and Sharing Flats
-      </h2>
-      <div className="tips-container grid lg:grid-cols-2 gap-6 m-8">
+    <section className="p-16">
+      <TitleWithSubtitle
+        subtitle="Feedback from Our Flat-Mates"
+        title="Tips for Finding and Sharing Flats"
+      />
+      <div className="grid lg:grid-cols-2 gap-8 m-8">
         {tips.map((tip) => (
           <div key={tip.id} className="tip mb-4">
-            <div className="relative w-full h-64 mb-4">
+            <div className="relative w-full h-72 mb-4 p-4 rounded-xl shadow-lg overflow-hidden">
               <Image
                 src={tip.image}
                 alt={tip.title}
-                className="rounded"
                 layout="fill"
                 objectFit="cover"
+                className="rounded-xl"
               />
+              {/* Move text container up by 40px */}
+              <div className="absolute bottom-[-2px] border-b-4 border-primary-main left-6 right-6 bg-white text-secondary-main p-4 h-24 rounded-xl shadow-md">
+                <h2 className="text-xl font-bold mb-2">{tip.title}</h2>
+                <p className="text-sm">{tip.advice}</p>
+              </div>
             </div>
-            <div className="text-lg font-black">{tip.title}</div>
-            <p>{tip.advice}</p>
           </div>
         ))}
       </div>

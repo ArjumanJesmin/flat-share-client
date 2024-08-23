@@ -36,7 +36,7 @@ const CoverSection = () => {
           </p>
           <Link href="/flatPost" legacyBehavior>
             <button className="inline-block px-6 py-4 text-xl font-medium text-white bg-primary-main transition duration-300 ease-in-out hover:bg-secondary-light hover:text-white cursor-pointer">
-              All Testimonials
+              Flat Post
             </button>
           </Link>
         </div>

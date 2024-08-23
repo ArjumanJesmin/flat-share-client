@@ -1,3 +1,4 @@
+import TitleWithSubtitle from "@/components/utils/TitleWithSubtitle";
 import Image from "next/image";
 import React from "react";
 
@@ -30,10 +31,11 @@ const Testimonials = () => {
   ];
 
   return (
-    <section className="mx-auto my-10 border-b-2 shadow-md p-6">
-      <h2 className="text-3xl font-bold m-6 text-center gradient-text">
-        Testimonials
-      </h2>
+    <section className="mx-auto p-28 bg-secondary-light1">
+      <TitleWithSubtitle
+        subtitle="Feedback from Our Flat-Mates"
+        title="Testimonials"
+      />
       <ul className="timeline timeline-snap-icon max-md:timeline-compact timeline-vertical">
         {testimonials.map((testimonial, index) => (
           <li key={testimonial.id}>
