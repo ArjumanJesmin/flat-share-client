@@ -54,37 +54,44 @@ const HeroSection = () => {
 
   return (
     <div>
-      <div className="grid grid-cols-3 m-8 gap-4">
+      <div className="grid grid-cols-3 m-16 gap-5">
         {data?.data?.slice(0, 6).map((flat: Flat) => {
           return (
             <div
               key={flat.id}
-              className="card card-compact w-96 bg-base-100 shadow-xl m-3"
+              className="card card-compact w-96 shadow-xl m-3"
               onClick={() => handleOpenModal(flat?.id)}
             >
-              <Image
-                src={flat?.flatPhotos[0]?.imageUrl}
-                alt="Flat Image"
-                width={400}
-                height={300}
-                className="object-cover"
-              />
-              <div className="card-body">
-                <h2 className="card-title">{flat?.location}</h2>
-                <p>{flat.description}</p>
-                <p>Rent: ${flat?.rentAmount}</p>
-                <p>Bedrooms: {flat?.bedrooms}</p>
-                <p>Amenities: {flat?.amenities}</p>
-                <div className="card-actions justify-end">
-                  <button className="btn bg-cyan-500 text-white w-full">
-                    Details
-                  </button>
+              <div className="relative">
+                <Image
+                  src={flat?.flatPhotos[0]?.imageUrl}
+                  width={400}
+                  height={400}
+                  alt="Flat Image"
+                  className="object-cover rounded-tl-none rounded-tr-none"
+                />
+                <div className="absolute inset-0 bg-secondary-light1 opacity-0 hover:opacity-80 transition-opacity rounded-b-3xl">
+                  <div className="card-body justify-center items-start my-7">
+                    <h2 className="card-title">{flat?.location}</h2>
+                    <p className="description opacity-100 hover:opacity-70 transition-opacity">
+                      {flat.description}
+                    </p>
+                    <p className="rent opacity-100 hover:opacity-70 transition-opacity">
+                      Rent: ${flat?.rentAmount}
+                    </p>
+                    <div className="card-actions justify-end">
+                      <button className="btn bg-primary-main text-white w-full">
+                        Details
+                      </button>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
           );
         })}
       </div>
+
       {isModalOpen && !singleFlatLoading && !singleFlatError && (
         <FlatModal
           isOpen={isModalOpen}

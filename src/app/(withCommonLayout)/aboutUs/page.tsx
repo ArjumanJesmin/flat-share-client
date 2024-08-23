@@ -7,7 +7,7 @@ import {
   FaLinkedin,
 } from "react-icons/fa";
 import { MdOutlineMail } from "react-icons/md";
-import flatImage from "@/assets/slider-3.jpg";
+import flatImage from "@/assets/slider-1.jpg";
 import image from "@/assets/flat.jpg";
 import TitleWithSubtitle from "@/components/utils/TitleWithSubtitle";
 
