@@ -1,7 +1,7 @@
 import AutoSlider from "@/components/HomePage/AutoSlider/AutoSlider";
 import CoverSection from "@/components/HomePage/CoverSection/CoverSection";
 import SearchArea from "@/components/HomePage/SearchArea/SearchArea";
-import Testimonials from "@/components/HomePage/Testimonials/Testimonials";
+import TestimonialsHomePage from "@/components/HomePage/Testimonials/TestimonialsHomePage";
 import Tips from "@/components/HomePage/Testimonials/Tips";
 import GalleryPage from "@/components/HomePage/galary/GallaryPage";
 
@@ -12,7 +12,7 @@ const HomePage = () => {
       <AutoSlider />
       <SearchArea />
       <GalleryPage />
-      <Testimonials />
+      <TestimonialsHomePage />
       <Tips />
     </div>
   );

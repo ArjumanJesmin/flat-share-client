@@ -31,24 +31,32 @@ const AboutUs: React.FC = () => {
         </div>
 
         {/* Content Container */}
-        <div className="relative z-10 flex flex-col items-start text-left text-secondary-main p-6">
-          <TitleWithSubtitle
-            title="This is About Us"
-            subtitle="Every body know about us section"
-          />
+        <div className="relative z-10 flex flex-col items-start text-left text-secondary-main px-8 py-20">
+          <h1 className="text-4xl font-bold mb-6">
+            Find Your Dream <br /> Home with Ease!
+          </h1>
+          <p className="my-4 text-slate-600">
+            Explore a platform designed to make your home search simple and{" "}
+            <br />
+            enjoyable. With a focus on user-friendly design and effortless{" "}
+            <br />
+            navigation, our site helps you connect with the right spaces and{" "}
+            <br />
+            people, making your move as smooth as possible.
+          </p>
         </div>
       </section>
 
-      <section className="container grid grid-cols-2 gap-16 my-8 justify-center items-center">
+      <section className="container grid md:grid-cols-2 gap-6 my-8 justify-center items-center p-4">
         <div>
           <Image
-            className="border-l-[24px] border-primary-main "
+            className="border-l-[40px] border-primary-main w-full lg:h-screen"
             alt="Background Image"
             src={image}
             quality={100}
             style={{
               objectFit: "cover",
-              borderRadius: "90% 70% 30% 0%",
+              borderRadius: "0 50% 50% ",
             }}
           />
         </div>

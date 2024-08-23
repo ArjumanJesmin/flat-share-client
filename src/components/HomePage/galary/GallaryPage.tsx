@@ -24,12 +24,14 @@ const GalleryPage: React.FC = () => {
   ];
 
   return (
-    <section className="container mx-auto py-10  mb-10 border shadow-lg bg-slate-50 gradient-text">
+    <section className="container mx-auto py-20 gradient-text shadow-lg">
       <TitleWithSubtitle subtitle="Welcome to My Site" title="Flat Gallery!" />
-      {/* <h1 className="text-3xl font-bold mb-6 text-center"> Flat Gallery</h1> */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 items-center justify-center gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 items-center justify-center gap-6">
         {images.map((image, index) => (
-          <div key={index} className="relative w-full h-64">
+          <div
+            key={index}
+            className="relative w-full h-64 rounded-lg overflow-hidden transition-shadow duration-300 ease-in-out hover:shadow-xl"
+          >
             <Image
               src={image.src}
               alt={image.alt}
@@ -37,6 +39,8 @@ const GalleryPage: React.FC = () => {
               objectFit="cover"
               className="rounded-lg"
             />
+            {/* Overlay with hover effect */}
+            <div className="absolute inset-0 bg-primary-main opacity-0 hover:opacity-50 transition-opacity rounded-b-3xl"></div>
           </div>
         ))}
       </div>

@@ -70,8 +70,8 @@ const HeroSection = () => {
                   alt="Flat Image"
                   className="object-cover rounded-tl-none rounded-tr-none"
                 />
-                <div className="absolute inset-0 bg-secondary-light1 opacity-0 hover:opacity-80 transition-opacity rounded-b-3xl">
-                  <div className="card-body justify-center items-start my-7">
+                <div className="absolute inset-0 bg-secondary-light opacity-0 hover:opacity-60 transition-opacity rounded-b-3xl">
+                  <div className="card-body justify-center items-start my-7 text-white">
                     <h2 className="card-title">{flat?.location}</h2>
                     <p className="description opacity-100 hover:opacity-70 transition-opacity">
                       {flat.description}

@@ -1,5 +1,4 @@
 import HeroSection from "@/components/HomePage/HeroSection/HeroSection";
-import TitleWithSubtitle from "@/components/utils/TitleWithSubtitle";
 import Image from "next/image";
 import flatImage from "@/assets/slider-1.jpg";
 
