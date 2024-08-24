@@ -26,7 +26,7 @@ const CoverSection = () => {
         </div>
 
         {/* Content Container */}
-        <div className="relative z-10 flex flex-col items-start text-left text-secondary-main p-6">
+        <div className="relative z-10 flex flex-col items-start text-left text-secondary-main px-16">
           <h1 className="text-5xl font-bold mb-6">
             Find Your Perfect Flat-mate Today!
           </h1>
@@ -35,7 +35,7 @@ const CoverSection = () => {
             and intuitive user experience.
           </p>
           <Link href="/flatPost" legacyBehavior>
-            <button className="inline-block px-6 py-4 text-xl font-medium text-white bg-primary-main transition duration-300 ease-in-out hover:bg-secondary-light hover:text-white cursor-pointer">
+            <button className="btn bg-primary-main text-white cursor-pointer ease-in-out hover:bg-secondary-light hover:text-secondary-light1 w-1/2">
               Flat Post
             </button>
           </Link>
